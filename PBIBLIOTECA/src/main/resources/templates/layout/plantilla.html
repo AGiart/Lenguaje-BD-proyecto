@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns="http://www.w3.org/1999/xhtml"       xmlns:th="http://www.thymeleaf.org" >
+    <head th:fragment="head">
+        <meta charset="UTF-8">
+            <title>Title</title>
+            <link rel="stylesheet" href="Loginn.css.css" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css}"/>
+            <link href="Loginn.css.css" rel="stylesheet" type="text/css"/>
+            <link href="https://fonts.googleapis.com/css2?family=Glober:wght@400;700&display=swap" rel="stylesheet">
+
+                <meta charset="UTF-8" />
+                <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+                <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet"/>
+                <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+                <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+                <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>   
+                <script th:src="@{/js/rutinas.js}"></script>
+
+                <style>
+                    body {
+                        font-family: monospace;
+                        font-weight: bolder;
+
+                        overflow: "Glober"; /* Bloquear el scroll vertical */
+                    }
+
+                    .carousel-inner img {
+                        object-fit: cover;
+                        filter: brightness(40%); /* Imagen oscura */
+                    }
+
+                    .carousel-caption {
+                        position: absolute;
+                        top: 20px;
+                        left: 20px;
+                        color: white;
+                        background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente para el texto */
+                        padding: 10px;
+                        border-radius: 5px;
+                    }
+
+                    .transparent-navbar {
+                        background-color: transparent !important;
+                        backdrop-filter: blur(10px); /* Para un efecto de desenfoque */
+                        border: none !important;
+                    }
+
+                    .carousel-inner img {
+                        object-fit: cover;
+                        filter: brightness(40%);
+                        position: fixed; /* Fijar la imagen en la ventana */
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        z-index: -1; /* Colocar la imagen detrás de todo */
+                    }
+
+                    .navbar-nav {
+                        margin: 0 auto; /* Centrar los elementos */
+                        padding: 0; /* Eliminar el espacio interno predeterminado */
+                        display: flex;
+                        align-items: center; /* Centrar verticalmente los elementos */
+                    }
+
+                    .navbar-nav .nav-item {
+                        margin: 0 10px; /* Agregar un espacio entre los elementos */
+                    }
+
+
+
+                    .nav-link {
+                        font-size: 21px;
+                        /* Agregar el grosor de fuente */
+                        color: white;
+                        text-transform: uppercase;
+                    }
+
+                </style>
+                </head>
+
+
+                <body>
+
+                    <header th:fragment="header">
+
+                        <nav class="navbar navbar-expand-lg navbar-light transparent-navbar">
+
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarNav">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item">
+                                        <div class="fondo"><img class="" style="color: #709085;" src="/css/img/Logo.png" /> </div>
+                                    </li>
+                                </ul>
+                                <div class="ml-auto"><a class="nav-link text-white" href="\">TuRecetas</a> </div>
+                                                        <div class="ml-auto">
+
+
+
+
+                                        <div class="input-group animate__animated animate__bounce">
+
+
+
+
+                                            <button class="btn bg-Dark border-light" type="submit"   >
+
+                                            </button>
+                                        </div>
+
+                                </div>
+
+
+
+                            </div>
+                        </nav>
+
+
+                    </header>
+
+
+                    <section th:fragment="Recomendaciones" id="produtos">
+                        <div id="carouselExample" class="carousel slide">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <div class="d-flex align-items-center justify-content-center">
+
+                                        <div class="text-center text-md-left m-5">
+                                            <h2 class="nav-link position-relative"></h2>
+
+                                            <!-- comment -->
+                                            <div class="text-center" style="max-width: 300px; margin: 0 auto;">
+                                                <p style="font-size: 19px; font-family: monospace; font-style: unset; color: rgba(255, 255, 255, 0.8);"></p>
+
+
+                                            </div>
+                                            <img src="https://cdn.pixabay.com/photo/2016/09/08/22/43/books-1655783_1280.jpg" class="d-block w-100" alt="Image 1">
+                                        </div>
+
+                                        <div class="container mt-5">
+                                            <div class="row justify-content-center">
+                                                <div class="col-md-6">
+                                                    <h2 class="mb-4 text-white">Inicio de Sesión</h2>
+                                                    <form>
+                                                        <div class="form-group">
+                                                            <label for="username" class="text-white">Nombre de Usuario</label>
+                                                            <input type="text" class="form-control" id="username" placeholder="Ingrese su nombre de usuario">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="password" class="text-white">Contraseña</label>
+                                                            <input type="password" class="form-control" id="password" placeholder="Ingrese su contraseña">
+                                                        </div>
+                                                        <a class="btn btn-outline-light rounded-pill mt-3" th:href="@{/libros}" style="transition: background-color 0.3s;">
+                                                            Ver Receta
+                                                        </a>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+
+
+
+
+
+
+
+
+
+
+                    </html>
