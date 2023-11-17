@@ -21,5 +21,7 @@ public interface AutorDao extends JpaRepository<Autor, Long>{
    
     );
     
+    public void insertarAutor(@Param())
+    
     
 }

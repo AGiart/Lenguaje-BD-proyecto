@@ -50,10 +50,6 @@ public class Libro {
 
     @Column(name = "CantidadCopiasDisponibles")
     private Integer cantidadCopiasDisponibles;
-    
-    
-    
-    
-    
+
     
 }

@@ -4,18 +4,15 @@
  */
 package com.PBIBLIOTECA.PBIBLIOTECA.Service;
 
-import com.PBIBLIOTECA.PBIBLIOTECA.Domain.Autor;
+import com.PBIBLIOTECA.PBIBLIOTECA.Domain.Editorial;
 import java.util.List;
 
 /**
  *
  * @author jason
  */
-public interface AutorService {
+public interface EditorialService {
     
-    
-    public List<Autor> obtenerAutores();
-    
-    
+    public List<Editorial>obtenerEditoriales();
     
 }

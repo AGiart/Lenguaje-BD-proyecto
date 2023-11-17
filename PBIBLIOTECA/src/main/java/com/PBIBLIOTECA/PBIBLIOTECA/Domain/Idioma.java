@@ -16,21 +16,18 @@ import lombok.Data;
  *
  * @author jason
  */
-@Entity
 @Data
-@Table(name="Autor")
-public class Autor {
+@Entity
+@Table(name="IDIOMAS")
+public class Idioma {
+    
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="autorID")
-    private Long autorID;
-    @Column(name="NombreAutor")
-    private String nombre;
-    
-    @Column(name="APELLIDOAUTOR")
-    private String apellido;
-    @Column(name="NACIONALIDADID")
-    private long nacionalidad;
+    @Column(name = "LENGUAGEID")
+    private Long LenguageID;
+
+    @Column(name = "NOMBREIDIOMA")
+    private String NombreIdioma;
     
 }

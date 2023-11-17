@@ -11,6 +11,7 @@ import com.PBIBLIOTECA.PBIBLIOTECA.Service.LibroService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.ParameterMode;
 import jakarta.persistence.StoredProcedureQuery;
+import java.sql.ResultSet;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,47 +23,77 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 public class ServiceImpl implements LibroService {
+
     @Autowired
     LibroDao libroDao;
-    
-    
-
 
     @Autowired
     private EntityManager entityManager;
-    
 
     @Override
     public void saveLibro(Libro libro) {
-        
+
         libroDao.insertarLibro(
-            libro.getTitulo(),
-            libro.getAutorID(),
-            libro.getGeneroID(),
-            libro.getEditorialID(),
-            libro.getIdiomaID(),
-            libro.getAnioPublicacion(),
-            libro.getISBN(),
-            libro.getCantidadCopiasDisponibles()
+                libro.getTitulo(),
+                libro.getAutorID(),
+                libro.getGeneroID(),
+                libro.getEditorialID(),
+                libro.getIdiomaID(),
+                libro.getAnioPublicacion(),
+                libro.getISBN(),
+                libro.getCantidadCopiasDisponibles()
         );
-        
-        
-        
-        
-        
+
     }
+    
+    
+    
+    
+    @Transactional
+    @Override
+    public void actualizarLibro(Libro libro) {
+        
+        libroDao.actualizarLibro(libro.getBookID(), libro.getTitulo(), libro.getAutorID(), libro.getGeneroID(), 
+                libro.getEditorialID(),
+                libro.getIdiomaID(), libro.getAnioPublicacion(), 
+                libro.getISBN(), libro.getCantidadCopiasDisponibles());
+    }
+    
+    
+    
+    
+    
+
     @Transactional
     @Override
     public List<OutParameter> obtenerInformacionLibros() {
-        
-        StoredProcedureQuery storedProcedure = entityManager.createStoredProcedureQuery("ObtenerInformacionLibros", OutParameter.class);
-        storedProcedure.registerStoredProcedureParameter("p_cursor", void.class, ParameterMode.REF_CURSOR);
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("OBTENERINFORMACIONLIBROS");
+        query.registerStoredProcedureParameter("p_cursor", void.class, ParameterMode.REF_CURSOR);
+        query.execute();
 
-        storedProcedure.execute();
+        return query.getResultList();
+    }
 
-        return storedProcedure.getResultList();
+    public List<OutParameter> obtenerLibroPorTitulo(String titulo) {
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("ObtenerLibroPorTitulo");
+        query.registerStoredProcedureParameter("p_titulo", String.class, ParameterMode.IN);
+        query.registerStoredProcedureParameter("p_cursor", Class.class, ParameterMode.REF_CURSOR);
+
+        query.setParameter("p_titulo", titulo);
+        query.execute();
+
+        return query.getResultList();
+    }
+    @Transactional
+    @Override
+    public void eliminarLibroPorId(Long id) {
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("EliminarLibroPorId");
+        query.registerStoredProcedureParameter("p_id", Long.class, ParameterMode.IN);
+        query.setParameter("p_id", id);
+        query.execute();
         
         
     }
     
+
 }

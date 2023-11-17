@@ -4,18 +4,15 @@
  */
 package com.PBIBLIOTECA.PBIBLIOTECA.Service;
 
-import com.PBIBLIOTECA.PBIBLIOTECA.Domain.Autor;
+import com.PBIBLIOTECA.PBIBLIOTECA.Domain.Idioma;
 import java.util.List;
 
 /**
  *
  * @author jason
  */
-public interface AutorService {
+public interface IdiomaService {
     
-    
-    public List<Autor> obtenerAutores();
-    
-    
+    List<Idioma>obtenerIdioma();
     
 }
