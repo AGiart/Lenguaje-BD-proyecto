@@ -17,17 +17,17 @@ import lombok.Data;
  * @author jason
  */
 @Data
+@Table(name="NACIONALIDADES")
 @Entity
-@Table(name="IDIOMAS")
-public class Idioma {
+public class Nacionalidad {
     
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "LENGUAGEID")
-    private Long LenguageID;
+    @Column(name = "NACIONALIDADID")
+    private Long nacionalidadID;
 
-    @Column(name = "NOMBREIDIOMA")
-    private String NombreIdioma;
+    @Column(name = "NOMBRENACIONALIDAD")
+    private String nombreNacionalidad;
+    
     
 }

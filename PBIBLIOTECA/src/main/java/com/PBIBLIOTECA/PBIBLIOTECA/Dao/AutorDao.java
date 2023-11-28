@@ -15,13 +15,15 @@ import org.springframework.data.repository.query.Param;
  */
 public interface AutorDao extends JpaRepository<Autor, Long>{
     
-    @Procedure("BuscarAutorPorNombre")
-    void insertarLibro(
-        @Param("p_AutorNombre") String autorNombre
-   
+     @Procedure(procedureName = "InsertarAutor")
+    void insertarAutor(
+            @Param("p_NOMBREAUTOR") String nombreAutor,
+            @Param("p_APELLIDOAUTOR") String apellidoAutor,
+            @Param("p_NACIONALIDAD") Long nacionalidadId
     );
     
-    public void insertarAutor(@Param())
+
+ 
     
     
 }

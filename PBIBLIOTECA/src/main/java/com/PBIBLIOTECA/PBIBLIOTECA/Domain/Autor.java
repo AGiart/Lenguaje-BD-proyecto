@@ -31,6 +31,6 @@ public class Autor {
     @Column(name="APELLIDOAUTOR")
     private String apellido;
     @Column(name="NACIONALIDADID")
-    private long nacionalidad;
+    private long nacionalidadID;
     
 }

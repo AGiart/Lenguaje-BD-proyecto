@@ -4,20 +4,13 @@
  */
 package com.PBIBLIOTECA.PBIBLIOTECA.Service;
 
-import com.PBIBLIOTECA.PBIBLIOTECA.Domain.Autor;
+import com.PBIBLIOTECA.PBIBLIOTECA.Domain.Rol;
 import java.util.List;
 
 /**
  *
  * @author jason
  */
-public interface AutorService {
-    
-    
-    public List<Autor> obtenerAutores();
-    
-    public void savelibros(Autor autor);
-    
-    
-    
+public interface RolService {
+    public List <Rol>obtenerRoles();
 }

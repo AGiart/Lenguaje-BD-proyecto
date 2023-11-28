@@ -16,18 +16,30 @@ import lombok.Data;
  *
  * @author jason
  */
-@Data
+@Table(name="usuarios")
 @Entity
-@Table(name="IDIOMAS")
-public class Idioma {
+@Data
+public class Usuario {
     
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "LENGUAGEID")
-    private Long LenguageID;
+    @Column(name = "cedula")
+    private Long cedula;
 
-    @Column(name = "NOMBREIDIOMA")
-    private String NombreIdioma;
+    @Column(name = "NOMBRE")
+    private String nombre;
+    
+    @Column(name = "APELLIDO")
+    private String apellido;
+    
+    @Column(name = "EMAIL")
+    private String email;
+    
+    @Column(name = "CONTRASENA")
+    private String contrasena;
+
+    @Column(name = "ROLID")
+    private Long rolID;
+
     
 }

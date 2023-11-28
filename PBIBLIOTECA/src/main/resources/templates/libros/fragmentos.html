@@ -101,20 +101,23 @@
                         <!-- Left links -->
                         <ul class="navbar-nav mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Libros</a>
+                                <a class="nav-link " th:href="@{/libros/inicio}">Libros</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Prestamos</a>
+                                <a class="nav-link" href="">Prestamos</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Usuarios</a>
+                                <a class="nav-link" th:href="@{/usuario/listado}">Usuarios</a>
                             </li>
 
 
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Multas</a>
                             </li>
+
+
+
 
 
                             <!-- Navbar dropdown -->
@@ -139,7 +142,7 @@
                                     </li>
                                     <li><hr class="dropdown-divider" /></li>
                                     <li>
-                                        <a class="dropdown-item" href="#">Something else here</a>
+                                        <a class="dropdown-item" >Something else here</a>
                                     </li>
                                 </ul>
                             </li>
@@ -198,9 +201,8 @@
                                                             <td th:text="${libro[5]}"></td>
                                                             <td th:text="${libro[6]}"></td>
                                                             <td th:text="${libro[7]}"></td>
-                                                            <td>
-
-                                                            </td>
+                                                             <td th:text="${libro[8]}"></td>
+                                                          
                                                             <td>
 
                                                                 <a class="nav-link" th:href="@{/libros/editar/}+${libro[1]}"></a>
@@ -217,335 +219,6 @@
                                             </div>
                                         </div>
 
-                                        <div class="container mt-5">
-                                            <h2 class="mb-4">Formulario de Libros</h2>
-                                            <form th:action="@{/libros/insertar}" method="post">
-                                                <div class="form-group">
-                                                    <label for="titulo">Título:</label>
-                                                    <input type="text" class="form-control" id="titulo" name="titulo" required>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="autorID">Autor:</label>
-                                                    <select class="form-control" id="autorID" name="autorID" required>
-                                                        <option value="">Selecciona un autor</option>
-                                                        <!-- Itera sobre la lista de autores y agrega opciones -->
-                                                        <option th:each="autores : ${Autor}" th:value="${autores[0]}" th:text="${autores[1]}"></option>
-                                                    </select>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="generoID">Género:</label>
-                                                    <select class="form-control" id="generoID" name="generoID" required>
-                                                        <option value="">Selecciona un género</option>
-                                                        <!-- Itera sobre la lista de géneros y agrega opciones -->
-                                                        <option th:each="generos : ${Genero}" th:value="${generos[0]}" th:text="${generos[1]}"></option>
-                                                    </select>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="editorialID">Editorial:</label>
-                                                    <select class="form-control" id="editorialID" name="editorialID" required>
-                                                        <option value="">Selecciona una editorial</option>
-                                                        <!-- Itera sobre la lista de editoriales y agrega opciones -->
-                                                        <option th:each="editorial : ${Editorial}" th:value="${editorial[0]}" th:text="${editorial[1]}"></option>
-                                                    </select>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="idiomaID">Idioma:</label>
-                                                    <select class="form-control" id="idiomaID" name="idiomaID" required>
-                                                        <option value="">Selecciona un idioma</option>
-                                                        <!-- Itera sobre la lista de idiomas y agrega opciones -->
-                                                        <option th:each="idioma : ${Idioma}" th:value="${idioma[0]}" th:text="${idioma[1]}"></option>
-                                                    </select>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="anioPublicacion">Año de Publicación:</label>
-                                                    <input type="text" class="form-control" id="anioPublicacion" name="anioPublicacion" required>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="isbn">ISBN:</label>
-                                                    <input type="text" class="form-control" id="isbn" name="isbn" required>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="cantidadCopias">Cantidad de Copias:</label>
-                                                    <input type="text" class="form-control" id="cantidadCopias" name="cantidadCopias" required>
-                                                </div>
-
-                                                <button type="submit" class="btn btn-primary">Insertar Libro</button>
-                                            </form>
-                                        </div>
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        <div class="container mt-5">
-                                            <h2 class="mb-4">Agregar Autores</h2>
-                                            <form th:action="@{/libros/insertar}" method="post">
-                                                <div class="form-group">
-                                                    <label for="titulo">Título:</label>
-                                                    <input type="text" class="form-control" id="titulo" name="titulo" required>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="autorID">Autor:</label>
-                                                    <select class="form-control" id="autorID" name="autorID" required>
-                                                        <option value="">Selecciona un autor</option>
-                                                        <!-- Itera sobre la lista de autores y agrega opciones -->
-                                                        <option th:each="autores : ${Autor}" th:value="${autores[0]}" th:text="${autores[1]}"></option>
-                                                    </select>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="generoID">Género:</label>
-                                                    <select class="form-control" id="generoID" name="generoID" required>
-                                                        <option value="">Selecciona un género</option>
-                                                        <!-- Itera sobre la lista de géneros y agrega opciones -->
-                                                        <option th:each="generos : ${Genero}" th:value="${generos[0]}" th:text="${generos[1]}"></option>
-                                                    </select>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="editorialID">Editorial:</label>
-                                                    <select class="form-control" id="editorialID" name="editorialID" required>
-                                                        <option value="">Selecciona una editorial</option>
-                                                        <!-- Itera sobre la lista de editoriales y agrega opciones -->
-                                                        <option th:each="editorial : ${Editorial}" th:value="${editorial[0]}" th:text="${editorial[1]}"></option>
-                                                    </select>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="idiomaID">Idioma:</label>
-                                                    <select class="form-control" id="idiomaID" name="idiomaID" required>
-                                                        <option value="">Selecciona un idioma</option>
-                                                        <!-- Itera sobre la lista de idiomas y agrega opciones -->
-                                                        <option th:each="idioma : ${Idioma}" th:value="${idioma[0]}" th:text="${idioma[1]}"></option>
-                                                    </select>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="anioPublicacion">Año de Publicación:</label>
-                                                    <input type="text" class="form-control" id="anioPublicacion" name="anioPublicacion" required>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="isbn">ISBN:</label>
-                                                    <input type="text" class="form-control" id="isbn" name="isbn" required>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="cantidadCopias">Cantidad de Copias:</label>
-                                                    <input type="text" class="form-control" id="cantidadCopias" name="cantidadCopias" required>
-                                                </div>
-
-                                                <button type="submit" class="btn btn-primary">Insertar Libro</button>
-                                            </form>
-                                        </div>
-                                        
-                                        
-                                        <div class="container mt-5">
-                                            <h2 class="mb-4">Agregar Editoriales</h2>
-                                            <form th:action="@{/libros/insertar}" method="post">
-                                                <div class="form-group">
-                                                    <label for="titulo">Título:</label>
-                                                    <input type="text" class="form-control" id="titulo" name="titulo" required>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="autorID">Autor:</label>
-                                                    <select class="form-control" id="autorID" name="autorID" required>
-                                                        <option value="">Selecciona un autor</option>
-                                                        <!-- Itera sobre la lista de autores y agrega opciones -->
-                                                        <option th:each="autores : ${Autor}" th:value="${autores[0]}" th:text="${autores[1]}"></option>
-                                                    </select>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="generoID">Género:</label>
-                                                    <select class="form-control" id="generoID" name="generoID" required>
-                                                        <option value="">Selecciona un género</option>
-                                                        <!-- Itera sobre la lista de géneros y agrega opciones -->
-                                                        <option th:each="generos : ${Genero}" th:value="${generos[0]}" th:text="${generos[1]}"></option>
-                                                    </select>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="editorialID">Editorial:</label>
-                                                    <select class="form-control" id="editorialID" name="editorialID" required>
-                                                        <option value="">Selecciona una editorial</option>
-                                                        <!-- Itera sobre la lista de editoriales y agrega opciones -->
-                                                        <option th:each="editorial : ${Editorial}" th:value="${editorial[0]}" th:text="${editorial[1]}"></option>
-                                                    </select>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="idiomaID">Idioma:</label>
-                                                    <select class="form-control" id="idiomaID" name="idiomaID" required>
-                                                        <option value="">Selecciona un idioma</option>
-                                                        <!-- Itera sobre la lista de idiomas y agrega opciones -->
-                                                        <option th:each="idioma : ${Idioma}" th:value="${idioma[0]}" th:text="${idioma[1]}"></option>
-                                                    </select>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="anioPublicacion">Año de Publicación:</label>
-                                                    <input type="text" class="form-control" id="anioPublicacion" name="anioPublicacion" required>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="isbn">ISBN:</label>
-                                                    <input type="text" class="form-control" id="isbn" name="isbn" required>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="cantidadCopias">Cantidad de Copias:</label>
-                                                    <input type="text" class="form-control" id="cantidadCopias" name="cantidadCopias" required>
-                                                </div>
-
-                                                <button type="submit" class="btn btn-primary">Insertar Libro</button>
-                                            </form>
-                                        </div>
-                                        
-                                        
-                                        <div class="container mt-5">
-                                            <h2 class="mb-4">Agregar Generos</h2>
-                                            <form th:action="@{/libros/insertar}" method="post">
-                                                <div class="form-group">
-                                                    <label for="titulo">Título:</label>
-                                                    <input type="text" class="form-control" id="titulo" name="titulo" required>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="autorID">Autor:</label>
-                                                    <select class="form-control" id="autorID" name="autorID" required>
-                                                        <option value="">Selecciona un autor</option>
-                                                        <!-- Itera sobre la lista de autores y agrega opciones -->
-                                                        <option th:each="autores : ${Autor}" th:value="${autores[0]}" th:text="${autores[1]}"></option>
-                                                    </select>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="generoID">Género:</label>
-                                                    <select class="form-control" id="generoID" name="generoID" required>
-                                                        <option value="">Selecciona un género</option>
-                                                        <!-- Itera sobre la lista de géneros y agrega opciones -->
-                                                        <option th:each="generos : ${Genero}" th:value="${generos[0]}" th:text="${generos[1]}"></option>
-                                                    </select>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="editorialID">Editorial:</label>
-                                                    <select class="form-control" id="editorialID" name="editorialID" required>
-                                                        <option value="">Selecciona una editorial</option>
-                                                        <!-- Itera sobre la lista de editoriales y agrega opciones -->
-                                                        <option th:each="editorial : ${Editorial}" th:value="${editorial[0]}" th:text="${editorial[1]}"></option>
-                                                    </select>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="idiomaID">Idioma:</label>
-                                                    <select class="form-control" id="idiomaID" name="idiomaID" required>
-                                                        <option value="">Selecciona un idioma</option>
-                                                        <!-- Itera sobre la lista de idiomas y agrega opciones -->
-                                                        <option th:each="idioma : ${Idioma}" th:value="${idioma[0]}" th:text="${idioma[1]}"></option>
-                                                    </select>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="anioPublicacion">Año de Publicación:</label>
-                                                    <input type="text" class="form-control" id="anioPublicacion" name="anioPublicacion" required>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="isbn">ISBN:</label>
-                                                    <input type="text" class="form-control" id="isbn" name="isbn" required>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="cantidadCopias">Cantidad de Copias:</label>
-                                                    <input type="text" class="form-control" id="cantidadCopias" name="cantidadCopias" required>
-                                                </div>
-
-                                                <button type="submit" class="btn btn-primary">Insertar Libro</button>
-                                            </form>
-                                        </div>
-                                        
-                                        
-                                        
-                                        
-                                         <div class="container mt-5">
-                                            <h2 class="mb-4">Agregar idioma</h2>
-                                            <form th:action="@{/libros/insertar}" method="post">
-                                                <div class="form-group">
-                                                    <label for="titulo">Título:</label>
-                                                    <input type="text" class="form-control" id="titulo" name="titulo" required>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="autorID">Autor:</label>
-                                                    <select class="form-control" id="autorID" name="autorID" required>
-                                                        <option value="">Selecciona un autor</option>
-                                                        <!-- Itera sobre la lista de autores y agrega opciones -->
-                                                        <option th:each="autores : ${Autor}" th:value="${autores[0]}" th:text="${autores[1]}"></option>
-                                                    </select>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="generoID">Género:</label>
-                                                    <select class="form-control" id="generoID" name="generoID" required>
-                                                        <option value="">Selecciona un género</option>
-                                                        <!-- Itera sobre la lista de géneros y agrega opciones -->
-                                                        <option th:each="generos : ${Genero}" th:value="${generos[0]}" th:text="${generos[1]}"></option>
-                                                    </select>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="editorialID">Editorial:</label>
-                                                    <select class="form-control" id="editorialID" name="editorialID" required>
-                                                        <option value="">Selecciona una editorial</option>
-                                                        <!-- Itera sobre la lista de editoriales y agrega opciones -->
-                                                        <option th:each="editorial : ${Editorial}" th:value="${editorial[0]}" th:text="${editorial[1]}"></option>
-                                                    </select>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="idiomaID">Idioma:</label>
-                                                    <select class="form-control" id="idiomaID" name="idiomaID" required>
-                                                        <option value="">Selecciona un idioma</option>
-                                                        <!-- Itera sobre la lista de idiomas y agrega opciones -->
-                                                        <option th:each="idioma : ${Idioma}" th:value="${idioma[0]}" th:text="${idioma[1]}"></option>
-                                                    </select>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="anioPublicacion">Año de Publicación:</label>
-                                                    <input type="text" class="form-control" id="anioPublicacion" name="anioPublicacion" required>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="isbn">ISBN:</label>
-                                                    <input type="text" class="form-control" id="isbn" name="isbn" required>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="cantidadCopias">Cantidad de Copias:</label>
-                                                    <input type="text" class="form-control" id="cantidadCopias" name="cantidadCopias" required>
-                                                </div>
-
-                                                <button type="submit" class="btn btn-primary">Insertar Libro</button>
-                                            </form>
-                                        </div>
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
 
                                     </div>
                                 </div>
@@ -553,6 +226,219 @@
                         </div>
                     </div>
                 </div>
+            </section>
+
+
+
+
+
+            <section class="intro">
+                <div class="bg-image h-100" >
+                    <div class="mask d-flex align-items-center h-100" style="background-color: rgba(0,0,0,.0);">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-12">
+                                    <div class="card bg-light  shadow-2-strong mt-5">
+                                        <div class="card-body">
+
+                                            <div class="container mt-5">
+                                                <h2 class="mb-4">Formulario de Libros</h2>
+                                                <form th:action="@{/libros/insertar}" method="post">
+                                                    <div class="form-group">
+                                                        <label for="titulo">Título:</label>
+                                                        <input type="text" class="form-control" id="titulo" name="titulo" required>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="autorID">Autor:</label>
+                                                        <select class="form-control" id="autorID" name="autorID" required>
+                                                            <option value="">Selecciona un autor</option>
+                                                            <!-- Itera sobre la lista de autores y agrega opciones -->
+                                                            <option th:each="autores : ${Autor}" th:value="${autores[0]}" th:text="${autores[1]}"></option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="generoID">Género:</label>
+                                                        <select class="form-control" id="generoID" name="generoID" required>
+                                                            <option value="">Selecciona un género</option>
+                                                            <!-- Itera sobre la lista de géneros y agrega opciones -->
+                                                            <option th:each="generos : ${Genero}" th:value="${generos[0]}" th:text="${generos[1]}"></option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="editorialID">Editorial:</label>
+                                                        <select class="form-control" id="editorialID" name="editorialID" required>
+                                                            <option value="">Selecciona una editorial</option>
+                                                            <!-- Itera sobre la lista de editoriales y agrega opciones -->
+                                                            <option th:each="editorial : ${Editorial}" th:value="${editorial[0]}" th:text="${editorial[1]}"></option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="idiomaID">Idioma:</label>
+                                                        <select class="form-control" id="idiomaID" name="idiomaID" required>
+                                                            <option value="">Selecciona un idioma</option>
+                                                            <!-- Itera sobre la lista de idiomas y agrega opciones -->
+                                                            <option th:each="idioma : ${Idioma}" th:value="${idioma[0]}" th:text="${idioma[1]}"></option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="anioPublicacion">Año de Publicación:</label>
+                                                        <input type="text" class="form-control" id="anioPublicacion" name="anioPublicacion" required>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="isbn">ISBN:</label>
+                                                        <input type="text" class="form-control" id="isbn" name="isbn" required>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="cantidadCopias">Cantidad de Copias:</label>
+                                                        <input type="text" class="form-control" id="cantidadCopias" name="cantidadCopias" required>
+                                                    </div>
+
+                                                    <button type="submit" class="btn btn-primary">Insertar Libro</button>
+                                                </form>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </section>
+
+
+
+
+            <section class="intro">
+                <div class="bg-image h-100" >
+                    <div class="mask d-flex align-items-center h-100" style="background-color: rgba(0,0,0,.0);">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-12">
+                                    <div class="card bg-light  shadow-2-strong mt-5">
+                                        <div class="card-body">
+
+                                            <div class="container mt-5">
+                                                <h2 class="mb-4">Agregar Autores</h2>
+                                                <form th:action="@{/libros/insertarAutor}" method="post">
+                                                    <div class="form-group">
+                                                        <label for="nombre">Nombre Autor</label>
+                                                        <input type="text" class="form-control" id="nombre" name="nombre" required>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="apellido">Apellido Autor</label>
+                                                        <input type="text" class="form-control" id="apellido" name="apellido" required>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="nacionalidadID">Nacionalidad</label>
+                                                        <select class="form-control" id="nacionalidadID" name="nacionalidadID" required>
+                                                            <option value="">Selecciona una Nacionalidad</option>
+                                                            <!-- Itera sobre la lista de nacionalidades y agrega opciones -->
+                                                            <option th:each="nacionalidades : ${Nacionalidad}" th:value="${nacionalidades[0]}" th:text="${nacionalidades[1]}"></option>
+                                                        </select>
+                                                    </div>
+
+                                                    <button type="submit" class="btn btn-primary">Insertar Autor</button>
+                                                </form>
+                                            </div>
+
+
+
+
+
+                                            </main>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </section>
+
+
+
+            <section class="intro">
+                <div class="bg-image h-100" >
+                    <div class="mask d-flex align-items-center h-100" style="background-color: rgba(0,0,0,.0);">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-12">
+                                    <div class="card bg-light  shadow-2-strong mt-5">
+                                        <div class="card-body">
+
+
+                                            <div>
+
+                                                <div class="container mt-5">
+                                                    <h2 class="mb-4">Agregar Editoriales</h2>
+                                                    <form th:action="@{/libros/insertarEditorial}" method="post">
+                                                        <div class="form-group">
+                                                            <label for="nombreEditorial">Nombre Editorial</label>
+                                                            <input type="text" class="form-control" id="nombreEditorial" name="nombreEditorial" required>
+                                                        </div>
+
+
+                                                </div>
+
+                                                <button type="submit" class="btn btn-primary">Insertar Autor</button>
+                                                </form>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </section>
+
+
+
+            <section class="intro">
+                <div class="bg-image h-100" >
+                    <div class="mask d-flex align-items-center h-100" style="background-color: rgba(0,0,0,.0);">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-12">
+                                    <div class="card bg-light  shadow-2-strong mt-5">
+                                        <div class="card-body">
+
+                                            <div>
+
+                                                <div class="container mt-5">
+                                                    <h2 class="mb-4">Agregar Generos</h2>
+                                                    <form th:action="@{/libros/insertarGenero}" method="post">
+                                                        <div class="form-group">
+                                                            <label for="nombreGenero">Generos</label>
+                                                            <input type="text" class="form-control" id="nombreGenero" name="nombreGenero" required>
+                                                        </div>
+
+
+                                                </div>
+
+                                                <button type="submit" class="btn btn-primary">Insertar Genero</button>
+                                                </form>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
             </section>
 
 
@@ -567,85 +453,74 @@
 
 
 
+        </section>
+        <section th:fragment="editarLibros">
+            <div class="container-fluid mt-5">
+                <h2 class="mb-4">Editar Libros</h2>
+                <form th:action="@{/libros/insertar}" method="post">
+                    <table class="table table-bordered">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>#</th>
+                                <th>Título</th>
+                                <th>Nombre del Autor</th>
+                                <th>Nombre del Género</th>
+                                <th>Nombre de la Editorial</th>
+                                <th>Nombre del Idioma</th>
+                                <th>Año de Publicación</th>
+                                <th>ISBN</th>
+                                <th>Cantidad de Copias Disponibles</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Ejemplo de datos de libro (puedes repetir esta fila para más libros) -->
+                            <tr th:each="libro : ${editarLibro}">
+                                <td><input type="text" class="form-control w-80" th:value="${libro[0]}" readonly /></td>
+                                <td><input type="text" class="form-control w-80" th:value="${libro[1]}" /></td>
+                                <td>
+                                    <label for="autorID">Autor:</label>
+                                    <select class="form-control" id="autorID" name="autorID" required>
+                                        <option value="">Selecciona un autor</option>
+                                        <!-- Itera sobre la lista de autores y agrega opciones -->
+                                        <option th:each="autor : ${Autor}" th:value="${autor[0]}" th:text="${autor[1]}" th:selected="${autor[0] == libro[2]}"></option>
+                                    </select>
 
 
-
-
-
-        </main>
-    </div>
-</div>
-
-
-
-</section>
-<section th:fragment="editarLibros">
-    <div class="container-fluid mt-5">
-        <h2 class="mb-4">Editar Libros</h2>
-        <form th:action="@{/libros/insertar}" method="post">
-            <table class="table table-bordered">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>#</th>
-                        <th>Título</th>
-                        <th>Nombre del Autor</th>
-                        <th>Nombre del Género</th>
-                        <th>Nombre de la Editorial</th>
-                        <th>Nombre del Idioma</th>
-                        <th>Año de Publicación</th>
-                        <th>ISBN</th>
-                        <th>Cantidad de Copias Disponibles</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Ejemplo de datos de libro (puedes repetir esta fila para más libros) -->
-                    <tr th:each="libro : ${editarLibro}">
-                        <td><input type="text" class="form-control w-80" th:value="${libro[0]}" readonly /></td>
-                        <td><input type="text" class="form-control w-80" th:value="${libro[1]}" /></td>
-                        <td>
-                            <label for="autorID">Autor:</label>
-                            <select class="form-control" id="autorID" name="autorID" required>
-                                <option value="">Selecciona un autor</option>
-                                <!-- Itera sobre la lista de autores y agrega opciones -->
-                                <option th:each="autor : ${Autor}" th:value="${autor[0]}" th:text="${autor[1]}" th:selected="${autor[0] == libro[2]}"></option>
-                            </select>
-
-
-                        </td>
-                        <td>
-                            <select class="form-control w-80"th:value="${libro[3]}" th:name="${'libro[' + libro[0] + ']'}">
-                                <!-- Itera sobre la lista de géneros y agrega opciones -->
-                                <option th:each="genero : ${Genero}" th:value="${genero[0]}" th:text="${genero[1]}"></option>
-                            </select>
-                        </td>
-                        <td>
-                            <select class="form-control w-80" th:name="${'editoriales[' + libro[0] + ']'}">
-                                <!-- Itera sobre la lista de editoriales y agrega opciones -->
-                                <option th:each="editorial : ${Editorial}" th:value="${editorial[0]}" th:text="${editorial[1]}"></option>
-                            </select>
-                        </td>
-                        <td>
-                            <select class="form-control w-80" th:name="${'idiomas[' + libro[0] + ']'}">
-                                <!-- Itera sobre la lista de idiomas y agrega opciones -->
-                                <option th:each="idioma : ${Idioma}" th:value="${idioma[0]}" th:text="${idioma[1]}"></option>
-                            </select>
-                        </td>
-                        <td><input type="text" class="form-control w-80" value="2023" readonly /></td>
-                        <td><input type="text" class="form-control w-80" th:value="${libro[6]}" /></td>
-                        <td><input type="text" class="form-control w-80" th:value="${libro[7]}" /></td>
-                        <td>
-                            <button type="submit" class="btn btn-primary">Guardar</button>
-                            <button type="submit" class="btn btn-danger">Volver</button>
-                            <!-- Puedes agregar botones de acciones aquí -->
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </form>
-    </div>
-</section>
-<!-- Enlace a Bootstrap JavaScript -->
+                                </td>
+                                <td>
+                                    <select class="form-control w-80"th:value="${libro[3]}" th:name="${'libro[' + libro[0] + ']'}">
+                                        <!-- Itera sobre la lista de géneros y agrega opciones -->
+                                        <option th:each="genero : ${Genero}" th:value="${genero[0]}" th:text="${genero[1]}"></option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="form-control w-80" th:name="${'editoriales[' + libro[0] + ']'}">
+                                        <!-- Itera sobre la lista de editoriales y agrega opciones -->
+                                        <option th:each="editorial : ${Editorial}" th:value="${editorial[0]}" th:text="${editorial[1]}"></option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="form-control w-80" th:name="${'idiomas[' + libro[0] + ']'}">
+                                        <!-- Itera sobre la lista de idiomas y agrega opciones -->
+                                        <option th:each="idioma : ${Idioma}" th:value="${idioma[0]}" th:text="${idioma[1]}"></option>
+                                    </select>
+                                </td>
+                                <td><input type="text" class="form-control w-80" value="2023" readonly /></td>
+                                <td><input type="text" class="form-control w-80" th:value="${libro[6]}" /></td>
+                                <td><input type="text" class="form-control w-80" th:value="${libro[7]}" /></td>
+                                <td>
+                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                    <button type="submit" class="btn btn-danger">Volver</button>
+                                    <!-- Puedes agregar botones de acciones aquí -->
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </section>
+        <!-- Enlace a Bootstrap JavaScript -->
 
 
 
@@ -653,13 +528,13 @@
 
 
 
-<!-- Contenido del Dashboard -->
+        <!-- Contenido del Dashboard -->
 
 
 
 
-</body>
+    </body>
 
 
-<
+
 </html>

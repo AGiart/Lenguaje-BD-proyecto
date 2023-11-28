@@ -4,20 +4,20 @@
  */
 package com.PBIBLIOTECA.PBIBLIOTECA.Service;
 
-import com.PBIBLIOTECA.PBIBLIOTECA.Domain.Autor;
+import com.PBIBLIOTECA.PBIBLIOTECA.Domain.Usuario;
 import java.util.List;
 
 /**
  *
  * @author jason
  */
-public interface AutorService {
+public interface UsuarioService {
+    
+    public List<Usuario>obtenerInfoUsuarios();
     
     
-    public List<Autor> obtenerAutores();
-    
-    public void savelibros(Autor autor);
+    public String guardarUsuario(String nombre, String apellido, String email, String contrasena, Long rolId, Long cedula);
     
     
-    
+     public void eliminarUsuarioPorId(Long id);
 }

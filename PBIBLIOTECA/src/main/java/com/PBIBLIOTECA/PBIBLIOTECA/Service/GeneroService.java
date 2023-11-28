@@ -15,4 +15,6 @@ public interface GeneroService {
     
     List<Genero>obtenerGeneros();
     
+    public void insertarGeneros(Genero genero);
+    
 }

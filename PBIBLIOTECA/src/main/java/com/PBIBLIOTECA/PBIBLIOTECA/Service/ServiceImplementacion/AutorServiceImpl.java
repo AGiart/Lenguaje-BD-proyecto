@@ -4,6 +4,7 @@
  */
 package com.PBIBLIOTECA.PBIBLIOTECA.Service.ServiceImplementacion;
 
+import com.PBIBLIOTECA.PBIBLIOTECA.Dao.AutorDao;
 import com.PBIBLIOTECA.PBIBLIOTECA.Domain.Autor;
 import com.PBIBLIOTECA.PBIBLIOTECA.Service.AutorService;
 import jakarta.persistence.EntityManager;
@@ -22,6 +23,8 @@ public class AutorServiceImpl implements AutorService {
 
     @Autowired
     private EntityManager entityManager;
+    @Autowired
+    private AutorDao autorDao;
 
     @Override
     public List<Autor> obtenerAutores() {
@@ -31,5 +34,17 @@ public class AutorServiceImpl implements AutorService {
 
         return query.getResultList();
     }
+
+    @Override
+    public void savelibros(Autor autor) {
+        autorDao.insertarAutor(autor.getNombre(), autor.getNombre(), autor.getNacionalidadID());
+       
+    }
+    
+    
+    
+    
+    
+    
 
 }

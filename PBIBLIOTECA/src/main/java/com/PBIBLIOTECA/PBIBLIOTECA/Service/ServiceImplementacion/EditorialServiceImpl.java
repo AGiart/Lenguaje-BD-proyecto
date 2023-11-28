@@ -4,6 +4,7 @@
  */
 package com.PBIBLIOTECA.PBIBLIOTECA.Service.ServiceImplementacion;
 
+import com.PBIBLIOTECA.PBIBLIOTECA.Dao.EditorialDao;
 import com.PBIBLIOTECA.PBIBLIOTECA.Domain.Editorial;
 import com.PBIBLIOTECA.PBIBLIOTECA.Service.EditorialService;
 import jakarta.persistence.EntityManager;
@@ -24,6 +25,9 @@ public class EditorialServiceImpl implements EditorialService {
     @Autowired
     private EntityManager entityManager;
     
+    @Autowired
+    private EditorialDao editorialDao;
+
 
     @Override
     public List<Editorial> obtenerEditoriales() {
@@ -34,6 +38,12 @@ public class EditorialServiceImpl implements EditorialService {
 
         return query.getResultList();
      
+    }
+
+    @Override
+    public void save(Editorial editorial) {
+        editorialDao.insertarLibro(editorial.getNombreEditorial());
+       
     }
     
 }

@@ -10,24 +10,24 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Data;
 
 /**
  *
  * @author jason
  */
-@Data
 @Entity
-@Table(name="IDIOMAS")
-public class Idioma {
+@Table(name="roles")
+public class Rol {
     
-
-    @Id
+     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "LENGUAGEID")
-    private Long LenguageID;
+    @Column(name = "ROLID")
+    private Long rolID;
 
-    @Column(name = "NOMBREIDIOMA")
-    private String NombreIdioma;
+    @Column(name = "NOMBRE_ROL")
+    private String nombre;
+    
+  
+
     
 }

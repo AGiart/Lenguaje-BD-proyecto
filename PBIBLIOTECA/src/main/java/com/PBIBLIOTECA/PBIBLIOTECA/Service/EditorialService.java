@@ -15,4 +15,6 @@ public interface EditorialService {
     
     public List<Editorial>obtenerEditoriales();
     
+    public void save(Editorial editorial);
+    
 }

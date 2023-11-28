@@ -4,9 +4,8 @@
  */
 package com.PBIBLIOTECA.PBIBLIOTECA.Service.ServiceImplementacion;
 
-import com.PBIBLIOTECA.PBIBLIOTECA.Dao.GeneroDao;
-import com.PBIBLIOTECA.PBIBLIOTECA.Domain.Genero;
-import com.PBIBLIOTECA.PBIBLIOTECA.Service.GeneroService;
+import com.PBIBLIOTECA.PBIBLIOTECA.Domain.Nacionalidad;
+import com.PBIBLIOTECA.PBIBLIOTECA.Service.NacionalidadService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.ParameterMode;
 import jakarta.persistence.StoredProcedureQuery;
@@ -19,28 +18,18 @@ import org.springframework.stereotype.Service;
  * @author jason
  */
 @Service
-public class GeneroServiceImpl implements GeneroService {
-    
+public class NacionalidadServiceImpl implements NacionalidadService {
     
     @Autowired
     private EntityManager entityManager;
-    
-    @Autowired
-    private GeneroDao generoDao;
 
     @Override
-    public List<Genero> obtenerGeneros() {
-        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("ObtenerGeneros");
+    public List<Nacionalidad> obtenerNacionalides() {
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("ObtenerNacionalidades");
         query.registerStoredProcedureParameter("p_cursor", void.class, ParameterMode.REF_CURSOR);
         query.execute();
 
         return query.getResultList();
-    }
-
-    @Override
-    public void insertarGeneros(Genero genero) {
-        generoDao.insertarGenero(genero.getNombreGenero());
-       
     }
     
 }

@@ -4,20 +4,16 @@
  */
 package com.PBIBLIOTECA.PBIBLIOTECA.Service;
 
-import com.PBIBLIOTECA.PBIBLIOTECA.Domain.Autor;
+import com.PBIBLIOTECA.PBIBLIOTECA.Domain.Nacionalidad;
 import java.util.List;
 
 /**
  *
  * @author jason
  */
-public interface AutorService {
+public interface NacionalidadService {
     
-    
-    public List<Autor> obtenerAutores();
-    
-    public void savelibros(Autor autor);
-    
+     public List<Nacionalidad>obtenerNacionalides();
     
     
 }
