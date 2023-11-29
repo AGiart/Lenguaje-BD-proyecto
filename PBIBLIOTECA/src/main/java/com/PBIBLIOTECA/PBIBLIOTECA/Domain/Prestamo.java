@@ -10,6 +10,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.sql.Date;
+
 import lombok.Data;
 
 /**
@@ -30,7 +32,7 @@ public class Prestamo {
     private Long Cedula;
     
     @Column(name = "BOOKID")
-    private String libroID;
+    private Long libroID;
     
     @Column(name = "FECHAINICIO")
     private String fechaInicio;
