@@ -67,17 +67,18 @@ public class ServiceImpl implements LibroService {
     @Transactional
     @Override
     public List<OutParameter> obtenerInformacionLibros() {
-        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("OBTENERINFORMACIONLIBROS");
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("LIBRO.OBTENERINFORMACIONLIBROS");
         query.registerStoredProcedureParameter("p_cursor", void.class, ParameterMode.REF_CURSOR);
         query.execute();
 
         return query.getResultList();
     }
-
+    @Transactional
+    @Override
     public List<OutParameter> obtenerLibroPorTitulo(String titulo) {
-        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("ObtenerLibroPorTitulo");
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("LIBRO.ObtenerLibroPorTitulo");
         query.registerStoredProcedureParameter("p_titulo", String.class, ParameterMode.IN);
-        query.registerStoredProcedureParameter("p_cursor", Class.class, ParameterMode.REF_CURSOR);
+        query.registerStoredProcedureParameter("p_cursor", void.class, ParameterMode.REF_CURSOR);
 
         query.setParameter("p_titulo", titulo);
         query.execute();
@@ -87,12 +88,24 @@ public class ServiceImpl implements LibroService {
     @Transactional
     @Override
     public void eliminarLibroPorId(Long id) {
-        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("EliminarLibroPorId");
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("LIBRO.EliminarLibroPorId");
         query.registerStoredProcedureParameter("p_id", Long.class, ParameterMode.IN);
         query.setParameter("p_id", id);
         query.execute();
         
         
+    }
+
+    @Override
+    public List<OutParameter> obtenerLibroIdPorTitulo(String titulo) {
+       StoredProcedureQuery query = entityManager.createStoredProcedureQuery("LIBRO.ObtenerLibroIdPorTitulo");
+        query.registerStoredProcedureParameter("p_titulo", String.class, ParameterMode.IN);
+        query.registerStoredProcedureParameter("p_cursor", void.class, ParameterMode.REF_CURSOR);
+
+        query.setParameter("p_titulo", titulo);
+        query.execute();
+
+        return query.getResultList();
     }
     
 

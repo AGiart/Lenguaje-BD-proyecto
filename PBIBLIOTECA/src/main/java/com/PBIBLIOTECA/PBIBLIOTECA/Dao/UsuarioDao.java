@@ -20,7 +20,7 @@ public interface UsuarioDao extends JpaRepository<Usuario, Long> {
     @Procedure(procedureName = "OBTENER_INFO_USUARIOS", outputParameterName = "p_resultado")
     StoredProcedureQuery obtenerInfoUsuarios();
 
-    @Procedure(procedureName = "LLAMAR_INSERTAR_USUARIO", outputParameterName = "p_RESULTADO")
+    @Procedure(procedureName = "USUARIO.LLAMAR_INSERTAR_USUARIO", outputParameterName = "p_RESULTADO")
     String llamarInsertarUsuario(
             @Param("p_NOMBRE") String nombre,
             @Param("p_APELLIDO") String apellido,

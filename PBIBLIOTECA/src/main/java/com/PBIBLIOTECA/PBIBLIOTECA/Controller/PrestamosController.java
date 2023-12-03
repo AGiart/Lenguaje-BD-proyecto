@@ -6,7 +6,7 @@ package com.PBIBLIOTECA.PBIBLIOTECA.Controller;
 
 import com.PBIBLIOTECA.PBIBLIOTECA.Domain.Prestamo;
 import com.PBIBLIOTECA.PBIBLIOTECA.Service.ServiceImplementacion.PrestamoServiceImpl;
-import java.sql.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import java.util.Date;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -22,44 +24,28 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/prestamos")
 @Controller
 public class PrestamosController {
+
     @Autowired
     PrestamoServiceImpl prestamoServiceImpl;
-    
+
     @GetMapping("/listado")
     public String page(Model model) {
-        model.addAttribute("attribute", "value");
+
+        var prestamos = prestamoServiceImpl.obtenerPrestamos();
+        model.addAttribute("prestamos", prestamos);
+
         return "/prestamos/listado";
     }
-     
-    
-    
+
     @PostMapping("/guardarPrestamo")
-    public String guardar(
+    public String realizarPago(
             @RequestParam("cedula") Long cedula,
             @RequestParam("libroID") Long libroID,
-            @RequestParam("fechaInicio") String fechaInicio,
-            @RequestParam("fechaDevolucion") String fechaDevolucion,
-            @RequestParam("estado") String estadoPrestamo,
-
-            Model model){
-        
-        Prestamo prestamo = new Prestamo();
-        
-        prestamo.setCedula(cedula);
-        prestamo.setLibroID(libroID);
-        prestamo.setFechaInicio(fechaInicio);
-        prestamo.setFechaDevolucionPrevista(fechaDevolucion);
-        prestamo.setEstadoPrestamo(estadoPrestamo);
-        
-        
-        prestamoServiceImpl.crearPrestamo(prestamo);
-        
-        
-  
-        
-        return "redirect:listado";
+            @RequestParam("fechaInicio") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaInicio,
+            @RequestParam("fechaDevolucion") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaDevolucion,
+            Model model) {
+        prestamoServiceImpl.realizarPrestamo(cedula, libroID, fechaInicio, fechaDevolucion);
+        return "redirect:/";
     }
-    
-    
-    
+
 }

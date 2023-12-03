@@ -10,7 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import java.sql.Date;
+import java.util.Date;
 
 import lombok.Data;
 
@@ -20,28 +20,35 @@ import lombok.Data;
  */
 @Entity
 @Data
-@Table(name="Prestamos")
+@Table(name="Prestamo")
 public class Prestamo {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "LOANID")
-    private Long loanID;
+    @Column(name = "PrestamoID")
+    private Long prestamoId;
 
-    @Column(name = "CEDULA")
-    private Long Cedula;
+    @Column(name = "usuarioCedula")
+    private Long usuarioCedula;
     
-    @Column(name = "BOOKID")
-    private Long libroID;
+    @Column(name = "libroId")
+    private Long libroId;;
     
-    @Column(name = "FECHAINICIO")
-    private String fechaInicio;
+    @Column(name = "fechaPrestamo")
+    private Date fechaPrestamo;
     
-    @Column(name = "FECHADEVOLUCIONPREVISTA")
-    private String fechaDevolucionPrevista;
+    @Column(name = "fechaDevolucion")
+    private Date fechaDevolucion;
     
-    @Column(name = "ESTADOPRESTAMO")
-    private String estadoPrestamo;
+
+    
+    
+    
+    
+     
+    
+    
+    
     
     
 }

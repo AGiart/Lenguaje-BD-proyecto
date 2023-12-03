@@ -25,7 +25,7 @@ public class NacionalidadServiceImpl implements NacionalidadService {
 
     @Override
     public List<Nacionalidad> obtenerNacionalides() {
-        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("ObtenerNacionalidades");
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("LIBRO.ObtenerNacionalidades");
         query.registerStoredProcedureParameter("p_cursor", void.class, ParameterMode.REF_CURSOR);
         query.execute();
 

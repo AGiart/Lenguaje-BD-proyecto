@@ -15,7 +15,7 @@ import org.springframework.data.repository.query.Param;
  */
 public interface EditorialDao extends JpaRepositoryImplementation<Editorial, Long> {
     
-    @Procedure("InsertarEditorial")
+    @Procedure("LIBRO.InsertarEditorial")
     void insertarLibro(
             @Param("P_NOMBREEDITORIAL") String nombreEditorial
           

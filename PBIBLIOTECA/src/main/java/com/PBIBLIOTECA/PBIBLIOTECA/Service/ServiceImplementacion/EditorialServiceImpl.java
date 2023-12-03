@@ -20,30 +20,37 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class EditorialServiceImpl implements EditorialService {
-    
-    
+
     @Autowired
     private EntityManager entityManager;
-    
+
     @Autowired
     private EditorialDao editorialDao;
 
-
     @Override
     public List<Editorial> obtenerEditoriales() {
-        
-        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("ObtenerEditoriales");
+
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("LIBRO.ObtenerEditoriales");
         query.registerStoredProcedureParameter("p_cursor", void.class, ParameterMode.REF_CURSOR);
         query.execute();
 
         return query.getResultList();
-     
+
     }
 
     @Override
     public void save(Editorial editorial) {
         editorialDao.insertarLibro(editorial.getNombreEditorial());
-       
+
     }
-    
+
+    @Override
+    public void eliminarEditorialPorId(Long id) {
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("LIBRO.EliminarEditorialPorId");
+        query.registerStoredProcedureParameter("p_id", Long.class, ParameterMode.IN);
+        query.setParameter("p_id", id);
+        query.execute();
+
+    }
+
 }

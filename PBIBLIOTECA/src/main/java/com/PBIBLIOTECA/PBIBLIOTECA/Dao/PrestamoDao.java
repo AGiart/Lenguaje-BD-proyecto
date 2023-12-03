@@ -9,7 +9,7 @@ import java.util.Date;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.query.Param;
-
+import java.util.Date;
 /**
  *
  * @author jason
@@ -17,15 +17,18 @@ import org.springframework.data.repository.query.Param;
 public interface PrestamoDao  extends JpaRepository<Prestamo, Long>{
     
     
-    @Procedure(procedureName = "REALIZAR_PRESTAMO_LIBRO")
-    String crearPrestamo(
-            @Param("p_CEDULA")Long cedula,
-            @Param("p_BOOKID") Long libroID,
-            @Param("p_FECHA_INICIO") String FechaInicio,
-            @Param("p_FECHA_DEVOLUCION_PREVISTA") String FechaDevolucion,
-            @Param("p_ESTADO_PRESTAMO") String estadoPrestamo
-   
+    @Procedure(procedureName = "Prestamos.CrearPrestamo")
+    void realizarPrestamo(
+            @Param("p_fecha_prestamo") Date fechaPrestamo,
+            @Param("p_fecha_devolucion") Date fechaDevolucion,
+            @Param("p_usuario_cedula") Long usuarioCedula,
+            @Param("p_libro_id") Long libroID
+          
+
     );
+    
+    
+    
     
     
 }

@@ -30,7 +30,7 @@ public class GeneroServiceImpl implements GeneroService {
 
     @Override
     public List<Genero> obtenerGeneros() {
-        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("ObtenerGeneros");
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("LIBRO.ObtenerGeneros");
         query.registerStoredProcedureParameter("p_cursor", void.class, ParameterMode.REF_CURSOR);
         query.execute();
 
@@ -40,6 +40,15 @@ public class GeneroServiceImpl implements GeneroService {
     @Override
     public void insertarGeneros(Genero genero) {
         generoDao.insertarGenero(genero.getNombreGenero());
+       
+    }
+
+    @Override
+    public void eliminarGeneroPorId(Long id) {
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("LIBRO.EliminarGeneroPorId");
+        query.registerStoredProcedureParameter("p_id", Long.class, ParameterMode.IN);
+        query.setParameter("p_id", id);
+        query.execute();
        
     }
     

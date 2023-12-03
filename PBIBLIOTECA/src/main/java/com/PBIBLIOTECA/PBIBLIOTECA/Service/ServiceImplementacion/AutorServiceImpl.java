@@ -28,7 +28,7 @@ public class AutorServiceImpl implements AutorService {
 
     @Override
     public List<Autor> obtenerAutores() {
-        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("ObtenerAutores");
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("LIBRO.ObtenerAutores");
         query.registerStoredProcedureParameter("p_cursor", void.class, ParameterMode.REF_CURSOR);
         query.execute();
 
@@ -38,6 +38,36 @@ public class AutorServiceImpl implements AutorService {
     @Override
     public void savelibros(Autor autor) {
         autorDao.insertarAutor(autor.getNombre(), autor.getNombre(), autor.getNacionalidadID());
+       
+    }
+
+    @Override
+    public void eliminarAutorPorId(Long id) {
+      StoredProcedureQuery query = entityManager.createStoredProcedureQuery("LIBRO.EliminarAutorPorId");
+        query.registerStoredProcedureParameter("p_id", Long.class, ParameterMode.IN);
+        query.setParameter("p_id", id);
+        query.execute(); 
+    }
+
+    @Override
+    public void actualizarAutor(Autor autor) {
+        autorDao.actualizarAutor(autor.getAutorID(), autor.getNombre(), autor.getApellido(), autor.getNacionalidadID());
+    }
+
+    @Override
+    public List<Autor> obtenerAutorID(Long id) {
+        
+        
+        
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("LIBRO.BuscarAutorPorId");
+        query.registerStoredProcedureParameter("p_AutorId", String.class, ParameterMode.IN);
+        query.registerStoredProcedureParameter("p_cursor", void.class, ParameterMode.REF_CURSOR);
+        query.setParameter("p_AutorId", id);
+        
+        
+        query.execute();
+
+        return query.getResultList();
        
     }
     

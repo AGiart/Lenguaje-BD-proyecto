@@ -17,4 +17,6 @@ public interface EditorialService {
     
     public void save(Editorial editorial);
     
+    public void eliminarEditorialPorId(Long id);
+    
 }

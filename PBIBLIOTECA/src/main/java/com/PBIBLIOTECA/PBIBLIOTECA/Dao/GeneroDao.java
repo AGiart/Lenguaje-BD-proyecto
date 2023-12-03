@@ -16,7 +16,7 @@ import org.springframework.data.repository.query.Param;
 public interface GeneroDao extends JpaRepositoryImplementation<Genero, Long> {
     
     
-    @Procedure("InsertarGenero")
+    @Procedure("LIBRO.InsertarGenero")
     void insertarGenero(
             @Param("P_NOMBREGENERO") String nombreGenero
           

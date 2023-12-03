@@ -146,18 +146,18 @@
                                             <div class="row justify-content-center">
                                                 <div class="col-md-6">
                                                     <h2 class="mb-4 text-white">Inicio de Sesión</h2>
-                                                    <form>
+                                                    <form method="POST" th:action="@{/login/login}">
                                                         <div class="form-group">
-                                                            <label for="username" class="text-white">Nombre de Usuario</label>
-                                                            <input type="text" class="form-control" id="username" placeholder="Ingrese su nombre de usuario">
+                                                            <label for="cedula" class="text-white">Nombre de Usuario</label>
+                                                            <input type="text" class="form-control" name="cedula"id="cedula" placeholder="Ingrese su nombre de usuario">
                                                         </div>
                                                         <div class="form-group">
-                                                            <label for="password" class="text-white">Contraseña</label>
-                                                            <input type="password" class="form-control" id="password" placeholder="Ingrese su contraseña">
+                                                            <label for="contrasena" class="text-white">Contraseña</label>
+                                                            <input type="password" class="form-control" name="contrasena" id="contrasena" placeholder="Ingrese su contraseña">
                                                         </div>
-                                                        <a class="btn btn-outline-light rounded-pill mt-3" th:href="@{/libros/inicio}" style="transition: background-color 0.3s;">
+                                                        <button class="btn btn-outline-light rounded-pill mt-3" type="submit"style="transition: background-color 0.3s;">
                                                             Ver Receta
-                                                        </a>
+                                                        </button>
                                                     </form>
                                                 </div>
                                             </div>

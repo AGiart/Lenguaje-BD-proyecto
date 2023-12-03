@@ -17,4 +17,6 @@ public interface GeneroService {
     
     public void insertarGeneros(Genero genero);
     
+    public void eliminarGeneroPorId(Long id);
+    
 }

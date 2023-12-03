@@ -20,6 +20,8 @@ public interface LibroService {
     
     public List<OutParameter> obtenerLibroPorTitulo(String titulo);
     
+    public List<OutParameter> obtenerLibroIdPorTitulo(String titulo);
+    
     public void actualizarLibro(Libro libro);
     
     public void eliminarLibroPorId(Long id);

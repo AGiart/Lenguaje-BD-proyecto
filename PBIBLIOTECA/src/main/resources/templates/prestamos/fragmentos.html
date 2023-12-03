@@ -35,17 +35,25 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                                     </thead>
                                                     <tbody>
                                                         <!-- Itera sobre la lista de libros -->
-                                                        <tr >
+                                                        <tr th:each="users : ${prestamos}">
 
-                                                        
+                                                            <td th:text="${users[0]}"></td>
+                                                            <td th:text="${users[1]}"></td>
+                                                            <td th:text="${users[2]}"></td>
+                                                            <td th:text="${users[3]}"></td>
+                                                            <td th:text="${users[5]}"></td>
 
 
                                                             <td>
-                                                              
+
 
 
                                                                 <button type="button" class="btn btn-primary btn-sm">Editar</button>
-                                                               
+                                                                <form th:action="@{/usuario/eliminarUsuario}" method="POST">
+                                                                    <input type="hidden" id="idUsuario" th:name="idUsuario" th:value="${users[0]}" />
+
+                                                                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                                                </form>
 
                                                             </td>
                                                         </tr>
@@ -91,22 +99,22 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
                                                     <div class="form-group">
                                                         <label for="fechaInicio">fechaInicio </label>
-                                                        <input type="text" class="form-control" id="fechaInicio" name="fechaInicio" required>
+                                                        <input type="date" class="form-control" id="fechaInicio" name="fechaInicio" required>
                                                     </div>
 
 
                                                     <div class="form-group">
                                                         <label for="fechaDevolucion">fechaDevolucion </label>
-                                                        <input type="text" class="form-control" id="fechaDevolucion" name="fechaDevolucion" required>
+                                                        <input type="date" class="form-control" id="fechaDevolucion" name="fechaDevolucion" required>
                                                     </div>
-                                                    
-                                                    <div class="form-group">
-                                                   
-                                                        <input type="text" class="form-control" id="estado" name="estado">
-                   
 
-                                                    <button type="submit" class="btn btn-primary">Insertar Autor</button>
-                                             
+                                                    <div class="form-group">
+
+                                                       
+
+
+                                                        <button type="submit" class="btn btn-primary">Insertar Autor</button>
+
                                                 </form>
                                             </div>
 

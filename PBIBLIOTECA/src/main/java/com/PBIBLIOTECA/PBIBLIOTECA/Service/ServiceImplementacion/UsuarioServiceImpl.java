@@ -31,7 +31,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public List<Usuario> obtenerInfoUsuarios() {
-        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("OBTENER_INFO_USUARIOS");
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("USUARIO.OBTENER_INFO_USUARIOS");
 
         query.registerStoredProcedureParameter("p_resultado", void.class, ParameterMode.REF_CURSOR);
         
@@ -48,7 +48,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     
     
     public void eliminarUsuarioPorId(Long id) {
-        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("ELIMINAR_USUARIO");
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("USUARIO.ELIMINAR_USUARIO");
         query.registerStoredProcedureParameter("p_CEDULA", Long.class, ParameterMode.IN);
         query.setParameter("p_CEDULA", id);
         query.execute();

@@ -4,6 +4,8 @@
  */
 package com.PBIBLIOTECA.PBIBLIOTECA.Controller;
 
+import com.PBIBLIOTECA.PBIBLIOTECA.DTO.UsuarioDto;
+import com.PBIBLIOTECA.PBIBLIOTECA.Service.ServiceImplementacion.AuthService;
 import com.PBIBLIOTECA.PBIBLIOTECA.Service.ServiceImplementacion.RolServiceImpl;
 import com.PBIBLIOTECA.PBIBLIOTECA.Service.ServiceImplementacion.UsuarioServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,33 +20,54 @@ import org.springframework.web.bind.annotation.RequestParam;
  *
  * @author jason
  */
-@RequestMapping("/usuario")
 @Controller
+@RequestMapping("/usuario")
 public class UsuarioController {
+
     @Autowired
     private UsuarioServiceImpl usuarioServiceImpl;
-    
+
     @Autowired
     private RolServiceImpl rolServiceImpl;
-    
+
+    @Autowired
+    private AuthService authService;
+
     @GetMapping("/listado")
     public String page(Model model) {
-        var usuario = usuarioServiceImpl.obtenerInfoUsuarios();
-        var roles =rolServiceImpl.obtenerRoles();
-        model.addAttribute("usuario", usuario);
+        // Obtiene el usuario de la sesión
+        UsuarioDto usuario = authService.getUsuarioFromSession();
+
+        // Verifica si el usuario tiene el rol 'Admin'
+        boolean isAdmin = authService.hasPermission("ADMIN");
+
+        // Si el usuario no tiene el rol 'Admin', redirige a una página de error o realiza alguna acción adecuada
+        if (!isAdmin) {
+            // Puedes redirigir a una página de error o realizar otra acción aquí
+            return "redirect:/error";
+        }
+
+        // Continúa con el código original
+        var usuarios = usuarioServiceImpl.obtenerInfoUsuarios();
+        var roles = rolServiceImpl.obtenerRoles();
+        model.addAttribute("usuario", usuarios);
         model.addAttribute("roles", roles);
-        
+
         return "/usuario/listado";
     }
-    
+
+    // Otros métodos del controlador...
+
+
+
     
     @PostMapping("/eliminarUsuario")
-    public String eliminarLibros(@RequestParam Long idUsuario, Model model) {
+    public String eliminarUsuarios(@RequestParam Long idUsuario, Model model) {
 
         usuarioServiceImpl.eliminarUsuarioPorId(idUsuario);
 
         // Luego, agrega el modelo y realiza las operaciones necesarias
-        return "redirect: listado";
+        return "redirect:/";
     }
     
     

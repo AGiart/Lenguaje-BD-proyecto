@@ -4,7 +4,10 @@
  */
 package com.PBIBLIOTECA.PBIBLIOTECA.Service;
 
+import com.PBIBLIOTECA.PBIBLIOTECA.Domain.OutParameter;
 import com.PBIBLIOTECA.PBIBLIOTECA.Domain.Prestamo;
+import java.util.List;
+import java.util.Date;
 
 /**
  *
@@ -13,6 +16,8 @@ import com.PBIBLIOTECA.PBIBLIOTECA.Domain.Prestamo;
 public interface PrestamoService {
     
     
-    public void crearPrestamo(Prestamo prestamo);
+     public void realizarPrestamo(Long usuarioCedula, Long libroID, Date fechaPrestamo, Date fechaDevolucion);
     
+    
+    public List<Prestamo> obtenerPrestamos( );
 }

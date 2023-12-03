@@ -18,7 +18,7 @@ import org.springframework.data.repository.query.Param;
  */
 public interface LibroDao extends JpaRepository<Libro, Long> {
 
-    @Procedure("InsertarLibro")
+    @Procedure("LIBRO.InsertarLibro")
     void insertarLibro(
             @Param("p_Titulo") String titulo,
             @Param("p_AutorID") Long autorID,
@@ -31,9 +31,9 @@ public interface LibroDao extends JpaRepository<Libro, Long> {
     );
     
     
-     @Procedure(name = "ActualizarLibro")
+     @Procedure(name = "LIBRO.ActualizarLibro")
     void actualizarLibro(
-        @Param("p_libro_id") Long id,
+        @Param("p_idLibro") Long id,
         @Param("p_titulo") String titulo,
         @Param("p_autor_id") Long autorId,
         @Param("p_genero_id") Long generoId,

@@ -74,8 +74,8 @@ public class InicioController {
     public String editarLibro(@PathVariable String libro, Model model) {
 
         String titulo = libro;
-        List<OutParameter> editarLibro = ServiceImpl.obtenerLibroPorTitulo(titulo);
-        model.addAttribute("editarLibro", editarLibro);
+        var editarLibro = ServiceImpl.obtenerLibroPorTitulo(titulo);
+        var idLibro = ServiceImpl.obtenerLibroIdPorTitulo(titulo);
 
         var Editoriales = editorialServiceImpl.obtenerEditoriales();
         var Autores = autorServiceImpl.obtenerAutores();
@@ -83,12 +83,29 @@ public class InicioController {
         var Idiomas = idioamServiceImpl.obtenerIdioma();
 
         model.addAttribute("Editorial", Editoriales);
+
         model.addAttribute("Autor", Autores);
         model.addAttribute("Genero", Generos);
         model.addAttribute("Idioma", Idiomas);
+        model.addAttribute("idLibro", idLibro);
+
+        model.addAttribute("editarLibro", editarLibro);
 
         // Luego, agrega el modelo y realiza las operaciones necesarias
         return "/libros/editarLibros";
+    }
+
+    @GetMapping("/editarAutor/{libro}")
+    public String editarAutor(@PathVariable Long libro, Model model) {
+        var nacionalidades =  nacionalidadServiceImpl.obtenerNacionalides();
+     
+        var Autores = autorServiceImpl.obtenerAutorID(libro);
+
+        model.addAttribute("Autor", Autores);
+         model.addAttribute("nacionalidad", nacionalidades);
+
+        // Luego, agrega el modelo y realiza las operaciones necesarias
+        return "/libros/editarAutor";
     }
 
     @PostMapping("/eliminarLibro")
@@ -97,11 +114,39 @@ public class InicioController {
         ServiceImpl.eliminarLibroPorId(idLibro);
 
         // Luego, agrega el modelo y realiza las operaciones necesarias
-        return "redirect:/libros";
+        return "redirect:/";
+    }
+
+    @PostMapping("/eliminarAutor")
+    public String eliminarAutor(@RequestParam Long idAutor, Model model) {
+
+        autorServiceImpl.eliminarAutorPorId(idAutor);
+
+        // Luego, agrega el modelo y realiza las operaciones necesarias
+        return "redirect:/";
+    }
+
+    @PostMapping("/eliminarEditorial")
+    public String eliminarEditorial(@RequestParam Long idEditorial, Model model) {
+
+        editorialServiceImpl.eliminarEditorialPorId(idEditorial);
+
+        // Luego, agrega el modelo y realiza las operaciones necesarias
+        return "redirect:/";
+    }
+
+    @PostMapping("/eliminarGenero")
+    public String eliminarGenero(@RequestParam Long idGenero, Model model) {
+
+        generoServiceImpl.eliminarGeneroPorId(idGenero);
+
+        // Luego, agrega el modelo y realiza las operaciones necesarias
+        return "redirect:/";
     }
 
     @PostMapping("/actualizar")
     public String actualizarLibro(
+            @RequestParam("idLibro") Long idLibro,
             @RequestParam("titulo") String titulo,
             @RequestParam("autorID") Long autorID,
             @RequestParam("generoID") Long generoID,
@@ -113,6 +158,7 @@ public class InicioController {
             Model model
     ) {
         Libro LibroActualizado = new Libro();
+        LibroActualizado.setBookID(idLibro);
         LibroActualizado.setTitulo(titulo);
         LibroActualizado.setAutorID(autorID);
         LibroActualizado.setGeneroID(generoID);
@@ -124,10 +170,36 @@ public class InicioController {
 
         ServiceImpl.actualizarLibro(LibroActualizado);
 
-        model.addAttribute("mensaje", "Libro insertado correctamente");
+        return "redirect:/";
+    }
+    
+    
+    @PostMapping("/actualizarAutor")
+    public String actualizarAutor(
+            @RequestParam("idAutor") Long idAutor,
+            @RequestParam("nombre") String nombre,
+            @RequestParam("apellido") String apellido,
+            @RequestParam("nacionalidad") Long nacionalidad,
+            Model model
+    ) {
+        Autor autor = new Autor();
+        autor.setAutorID(idAutor);
+        autor.setNombre(nombre);
+        autor.setApellido(apellido);
+        autor.setNacionalidadID(nacionalidad);
+        
+        autorServiceImpl.actualizarAutor(autor);
+
+
+
 
         return "redirect:/";
     }
+    
+    
+    
+    
+    
 
     @PostMapping("/insertar")
     public String insertarLibro(
@@ -175,15 +247,10 @@ public class InicioController {
         model.addAttribute("mensaje", "Autor insertado correctamente");
         return "redirect:/";
     }
-    
-    
-    
-    
+
     @PostMapping("/insertarEditorial")
     public String insertarEditorial(
-
             @RequestParam("nombreEditorial") String nombreEditorial,
-
             Model model
     ) {
         Editorial editorial = new Editorial();
@@ -193,22 +260,42 @@ public class InicioController {
         model.addAttribute("mensaje", "Autor insertado correctamente");
         return "redirect:/";
     }
+
     @PostMapping("insertarGenero")
     public String insertarGenero(
-            @RequestParam("nombreGenero")String nombreGenero,Model model){
+            @RequestParam("nombreGenero") String nombreGenero, Model model) {
         Genero genero = new Genero();
         genero.setNombreGenero(nombreGenero);
         generoServiceImpl.insertarGeneros(genero);
-        
-        
+
         return "redirect:/";
-        
-        
+
     }
-    
-    
-    
-    
-    
+
+    @GetMapping("/mostrarAutores")
+    public String mostrarAutores(Model model) {
+
+        var Autores = autorServiceImpl.obtenerAutores();
+        model.addAttribute("Autores", Autores);
+
+        return "/libros/Autores";
+    }
+
+    @GetMapping("/mostraEditoriales")
+    public String mostraEditoriales(Model model) {
+
+        var Editoriales = editorialServiceImpl.obtenerEditoriales();
+        model.addAttribute("editorial", Editoriales);
+
+        return "/libros/Editoriales";
+    }
+
+    @GetMapping("/mostrarGeneros")
+    public String mostrarGeneros(Model model) {
+        var Generos = generoServiceImpl.obtenerGeneros();
+        model.addAttribute("genero", Generos);
+
+        return "/libros/Generos";
+    }
 
 }

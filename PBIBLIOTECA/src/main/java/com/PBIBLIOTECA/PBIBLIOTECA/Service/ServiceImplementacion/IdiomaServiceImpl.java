@@ -26,7 +26,7 @@ public class IdiomaServiceImpl implements IdiomaService {
 
     @Override
     public List<Idioma> obtenerIdioma() {
-        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("ObtenerIdiomas");
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("LIBRO.ObtenerIdiomas");
         query.registerStoredProcedureParameter("p_cursor", void.class, ParameterMode.REF_CURSOR);
         query.execute();
         return query.getResultList();

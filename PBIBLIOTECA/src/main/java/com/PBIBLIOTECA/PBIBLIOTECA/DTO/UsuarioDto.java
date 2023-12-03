@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.PBIBLIOTECA.PBIBLIOTECA.Domain;
+package com.PBIBLIOTECA.PBIBLIOTECA.DTO;
 
+import com.PBIBLIOTECA.PBIBLIOTECA.Domain.*;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,34 +17,31 @@ import lombok.Data;
  *
  * @author jason
  */
-@Table(name="usuarios")
-@Entity
 @Data
-public class Usuario {
-    
+public class UsuarioDto {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cedula")
-    private Long cedula;
+    private int cedula;
 
-    @Column(name = "NOMBRE")
     private String nombre;
-    
-    @Column(name = "APELLIDO")
+
     private String apellido;
-    
-    @Column(name = "EMAIL")
+
     private String email;
-    
-    @Column(name = "CONTRASENA")
+
     private String contrasena;
 
-    @Column(name = "ROLID")
-    private Long rolID;
+    private String RolNombre;
 
-    public Usuario(int cedula, String string, String string0, String string1, String string2, String string3) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public UsuarioDto(int cedula, String nombre, String apellido, String email, String contrasena, String RolNombre) {
+        this.cedula = cedula;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        this.contrasena = contrasena;
+        this.RolNombre = RolNombre;
     }
 
-    
 }

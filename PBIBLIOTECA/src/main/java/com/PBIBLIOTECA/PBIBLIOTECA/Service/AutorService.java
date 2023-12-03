@@ -18,6 +18,12 @@ public interface AutorService {
     
     public void savelibros(Autor autor);
     
+    public void eliminarAutorPorId(Long id);
+    
+    public void actualizarAutor(Autor autor);
+    
+    public List<Autor>  obtenerAutorID(Long id);
+    
     
     
 }
