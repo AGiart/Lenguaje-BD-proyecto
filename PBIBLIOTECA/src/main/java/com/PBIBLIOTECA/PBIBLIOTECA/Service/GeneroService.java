@@ -19,4 +19,6 @@ public interface GeneroService {
     
     public void eliminarGeneroPorId(Long id);
     
+    public void actualizarGenero(Genero genero);
+    
 }

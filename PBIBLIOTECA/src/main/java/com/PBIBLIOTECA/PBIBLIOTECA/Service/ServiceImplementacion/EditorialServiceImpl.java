@@ -53,4 +53,10 @@ public class EditorialServiceImpl implements EditorialService {
 
     }
 
+    @Override
+    public void editarEditorial(Editorial editorial) {
+        editorialDao.actualizarEditorial(editorial.getPublisherId(), editorial.getNombreEditorial());
+     
+    }
+
 }

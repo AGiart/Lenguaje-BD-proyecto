@@ -32,14 +32,22 @@ public class UsuarioController {
 
     @Autowired
     private AuthService authService;
+    
+    
 
     @GetMapping("/listado")
     public String page(Model model) {
         // Obtiene el usuario de la sesión
         UsuarioDto usuario = authService.getUsuarioFromSession();
-
+        
+        if (!authService.isUserRolePresent()) {
+            return "redirect:/"; // o redirige a otra página de error
+        }
+        
         // Verifica si el usuario tiene el rol 'Admin'
         boolean isAdmin = authService.hasPermission("ADMIN");
+        
+        
 
         // Si el usuario no tiene el rol 'Admin', redirige a una página de error o realiza alguna acción adecuada
         if (!isAdmin) {

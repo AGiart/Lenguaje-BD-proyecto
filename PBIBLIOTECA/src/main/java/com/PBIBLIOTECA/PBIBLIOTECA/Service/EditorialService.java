@@ -19,4 +19,6 @@ public interface EditorialService {
     
     public void eliminarEditorialPorId(Long id);
     
+    public void editarEditorial(Editorial editorial);
+    
 }

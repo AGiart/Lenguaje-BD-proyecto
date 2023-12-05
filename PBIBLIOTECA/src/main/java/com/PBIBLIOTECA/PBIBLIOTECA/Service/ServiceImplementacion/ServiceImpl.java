@@ -77,6 +77,7 @@ public class ServiceImpl implements LibroService {
     @Override
     public List<OutParameter> obtenerLibroPorTitulo(String titulo) {
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("LIBRO.ObtenerLibroPorTitulo");
+        entityManager.clear();
         query.registerStoredProcedureParameter("p_titulo", String.class, ParameterMode.IN);
         query.registerStoredProcedureParameter("p_cursor", void.class, ParameterMode.REF_CURSOR);
 

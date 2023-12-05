@@ -21,4 +21,13 @@ public interface EditorialDao extends JpaRepositoryImplementation<Editorial, Lon
           
     );
     
+    @Procedure("LIBRO.ActualizarEditorial")
+    void actualizarEditorial(
+            @Param("p_publisherId") Long idEditorial,
+            @Param("p_nombreEditorial") String nombreEditorial
+          
+    );
+    
+    
+    
 }

@@ -5,7 +5,9 @@
 package com.PBIBLIOTECA.PBIBLIOTECA.Controller;
 
 import com.PBIBLIOTECA.PBIBLIOTECA.Domain.Prestamo;
+import com.PBIBLIOTECA.PBIBLIOTECA.Service.ServiceImplementacion.AuthService;
 import com.PBIBLIOTECA.PBIBLIOTECA.Service.ServiceImplementacion.PrestamoServiceImpl;
+import com.PBIBLIOTECA.PBIBLIOTECA.Service.ServiceImplementacion.ServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,12 +29,23 @@ public class PrestamosController {
 
     @Autowired
     PrestamoServiceImpl prestamoServiceImpl;
+    
+    @Autowired
+    private ServiceImpl serviceImpl;
+
+    @Autowired
+    private AuthService authService;
 
     @GetMapping("/listado")
     public String page(Model model) {
-
+        var libros = serviceImpl.obtenerInformacionLibros();
         var prestamos = prestamoServiceImpl.obtenerPrestamos();
         model.addAttribute("prestamos", prestamos);
+        model.addAttribute("libros", libros);
+
+        if (!authService.isUserRolePresent()) {
+            return "redirect:/"; // o redirige a otra página de error
+        }
 
         return "/prestamos/listado";
     }
@@ -44,8 +57,14 @@ public class PrestamosController {
             @RequestParam("fechaInicio") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaInicio,
             @RequestParam("fechaDevolucion") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaDevolucion,
             Model model) {
+
+        if (!authService.isUserRolePresent()) {
+            return "redirect:/"; // o redirige a otra página de error
+        }
+
         prestamoServiceImpl.realizarPrestamo(cedula, libroID, fechaInicio, fechaDevolucion);
-        return "redirect:/";
+
+        return "redirect:/prestamos/listado";
     }
 
 }

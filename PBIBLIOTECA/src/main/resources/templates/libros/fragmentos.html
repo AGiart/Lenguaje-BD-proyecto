@@ -11,6 +11,9 @@
 
         <!-- Enlace a Font Awesome CSS -->
         <link rel="stylesheet" href="/webjars/font-awesome/5.15.1/css/all.css">
+        <!-- En el head de tu HTML -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-ZzK1pPYYlXTlSqPEx1nLoFqXjd8z2I+T4AnuDU7P9Qa1C4aCm3Bq7D8R2O3g8i6T" crossorigin="anonymous">
+
         <style>
             html,
             body,
@@ -117,40 +120,16 @@
                             </li>
 
 
-
-
-
-                            <!-- Navbar dropdown -->
-                            <li class="nav-item dropdown">
-                                <a
-                                    class="nav-link dropdown-toggle"
-                                    href="#"
-                                    id="navbarDropdown"
-                                    role="button"
-                                    data-mdb-toggle="dropdown"
-                                    aria-expanded="false"
-                                    >
-                                    Dropdown
-                                </a>
-                                <!-- Dropdown menu -->
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li>
-                                        <a class="dropdown-item" href="#">Action</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                    </li>
-                                    <li><hr class="dropdown-divider" /></li>
-                                    <li>
-                                        <a class="dropdown-item" >Something else here</a>
-                                    </li>
-                                </ul>
-                            </li>
                             <li class="nav-item">
-                                <a class="nav-link disabled"
-                                   >Disabled</a
-                                >
+                                <a class="nav-link" th:href="@{/login/logout}">
+                                    <i class="fas fa-sign-out-alt"></i> 
+                                    Logout</a>
                             </li>
+
+
+
+
+
                         </ul>
 
                         </ul>
@@ -462,23 +441,23 @@
                                  </td>
                                 -->
                                 <td><input name="apellido" id="apellido" type="text" class="form-control w-80" th:value="${libro[2]}" /></td>
-                      
 
-                        <td>
-                        <select name="nacionalidad" id="nacionalidad" class="form-control w-80" >
-                            <div >
-                                 <option name="nacionalidad" id="nacionalidad"  th:value="${libro[4]}" th:text="${libro[3]}" ></option>
-                                <option name="nacionalidad" id="nacionalidad" th:each="idioma : ${nacionalidad}" th:value="${idioma[0]}" th:text="${idioma[1]}" ></option>
-                            </div>
-                        </select>
-                        </td>
 
-                        <td>
-                            <button type="submit" class="btn btn-primary">Guardar</button>
-                            <button type="submit" class="btn btn-danger">Volver</button>
-                            <!-- Puedes agregar botones de acciones aquí -->
-                        </td>
-                        </tr>
+                                <td>
+                                    <select name="nacionalidad" id="nacionalidad" class="form-control w-80" >
+                                        <div >
+                                            <option name="nacionalidad" id="nacionalidad"  th:value="${libro[4]}" th:text="${libro[3]}" ></option>
+                                            <option name="nacionalidad" id="nacionalidad" th:each="idioma : ${nacionalidad}" th:value="${idioma[0]}" th:text="${idioma[1]}" ></option>
+                                        </div>
+                                    </select>
+                                </td>
+
+                                <td>
+                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                    <button type="submit" class="btn btn-danger">Volver</button>
+                                    <!-- Puedes agregar botones de acciones aquí -->
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </form>
@@ -488,6 +467,78 @@
 
 
 
+
+
+        <section th:fragment="editarEditorial">
+            <div class="container-fluid mt-5">
+                <h2 class="mb-4">Editar Editorial</h2>
+                <form th:action="@{/libros/actualizarEditorial}" method="post">
+                    <table class="table table-bordered">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>#</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Nacionalidad</th>
+                                <th>Acciones</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr >
+                                <td><input name="idEditorial" id="idEditorial" type="text" class="form-control w-80" th:value="${idEditorial}"  /></td>
+                                <td><input name="nombreEditorial" id="nombreEditorial" type="text" class="form-control w-80"/></td>
+                         
+
+                                <td>
+                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                    <button type="submit" class="btn btn-danger">Volver</button>
+                                    <!-- Puedes agregar botones de acciones aquí -->
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </section>
+        
+        
+        
+        
+         <section th:fragment="editarGenero">
+            <div class="container-fluid mt-5">
+                <h2 class="mb-4">Editar Editorial</h2>
+                <form th:action="@{/libros/editarGenero}" method="POST">
+                    <table class="table table-bordered">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>#</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Nacionalidad</th>
+                                <th>Acciones</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr >
+                                <td><input name="idGenero" id="idGenero" type="text" class="form-control w-80" th:value="${idGenero}"  /></td>
+                                <td><input name="nombreGenero" id="nombreGenero" type="text" class="form-control w-80"/></td>
+                         
+
+                                <td>
+                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                    <button type="submit" class="btn btn-danger">Volver</button>
+                                    <!-- Puedes agregar botones de acciones aquí -->
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </section>
 
 
 
@@ -625,6 +676,7 @@
                                             <thead>
                                                 <tr>
                                                     <th scope="col">Editorial</th>
+                                                    <th scope="col">Editorial</th>
 
 
 
@@ -634,9 +686,14 @@
                                                 <!-- Itera sobre la lista de libros -->
                                                 <tr th:each="libro : ${editorial}">
                                                     <td th:text="${libro[1]}"></td>
-
-
+                                                    
+                                                       <td>
+                                                        <a class="btn btn-custom" th:href="@{/libros/editarEditorial/}+${libro[0]}">Editar</a>
+                                                    </td>
                                                    
+
+
+
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -704,6 +761,7 @@
                                             <thead>
                                                 <tr>
                                                     <th scope="col">Genero</th>
+                                                    <th scope="col">Acciones</th>
 
 
 
@@ -713,6 +771,10 @@
                                                 Itera sobre la lista de libros 
                                                 <tr th:each="libro : ${genero}">
                                                     <td th:text="${libro[1]}"></td>
+                                                      <td>
+                                                        <a class="btn btn-custom" th:href="@{/libros/editarEditorial/}+${libro[0]}">Editar</a>
+                                                    </td>
+                                                    
                                                     <!--
                                                <td>
 
@@ -727,7 +789,7 @@
                                                    </form>
                                                </td>-->
 
-                                                   
+
                                                 </tr>
                                             </tbody>
                                         </table>

@@ -92,10 +92,16 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
 
 
+                                                    
                                                     <div class="form-group">
-                                                        <label for="libroID">libroID </label>
-                                                        <input type="text" class="form-control" id="libroID" name="libroID" required>
+                                                        <label for="autorID">libroID</label>
+                                                        <select class="form-control" id="libroID" name="libroID" required>
+                                                            <option value="">Selecciona un libro</option>
+                                                            <!-- Itera sobre la lista de autores y agrega opciones -->
+                                                            <option th:each="autores : ${libros}" th:value="${autores[0]}" th:text="${autores[1]}"></option>
+                                                        </select>
                                                     </div>
+                                                    
 
                                                     <div class="form-group">
                                                         <label for="fechaInicio">fechaInicio </label>

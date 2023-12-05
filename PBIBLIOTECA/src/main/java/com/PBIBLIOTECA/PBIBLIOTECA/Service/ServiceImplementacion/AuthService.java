@@ -77,6 +77,8 @@ public class AuthService {
                 );
 
                 httpSession.setAttribute("usuario", usuario);
+                 httpSession.setMaxInactiveInterval(1800);
+                 
 
                 return "Inicio de sesión exitoso";
             } else {
@@ -103,6 +105,11 @@ public class AuthService {
         return (UsuarioDto) httpSession.getAttribute("usuario");
     }
     
+    public boolean isUserRolePresent() {
+        UsuarioDto usuario = (UsuarioDto) httpSession.getAttribute("usuario");
+
+        return usuario != null && usuario.getRolNombre() != null;
+    }
     
     
     

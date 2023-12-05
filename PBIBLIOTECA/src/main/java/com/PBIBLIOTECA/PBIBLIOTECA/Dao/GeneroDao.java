@@ -22,5 +22,12 @@ public interface GeneroDao extends JpaRepositoryImplementation<Genero, Long> {
           
     );
     
+    @Procedure("LIBRO.ActualizarGenero")
+    void actualizarGenero(
+             @Param("p_GENREID") Long idGenero,
+            @Param("p_NOMBREGENERO") String nombreGenero
+          
+    );
+    
     
 }

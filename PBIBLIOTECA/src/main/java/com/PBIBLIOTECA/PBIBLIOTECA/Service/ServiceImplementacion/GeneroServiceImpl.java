@@ -51,5 +51,11 @@ public class GeneroServiceImpl implements GeneroService {
         query.execute();
        
     }
+
+    @Override
+    public void actualizarGenero(Genero genero) {
+        generoDao.actualizarGenero(genero.getGenreID(), genero.getNombreGenero());
+     
+    }
     
 }
