@@ -27,11 +27,34 @@ public class PrestamoServiceImpl implements PrestamoService {
 
     @Autowired
     PrestamoDao prestamoDao;
+    
+     @Override
+     public void realizarPrestamo(Long usuarioCedula, Long libroID, Date fechaPrestamo, Date fechaDevolucion) {
+    Integer resultado = 0;
 
-    @Override
-    public void realizarPrestamo(Long usuarioCedula, Long libroID, Date fechaPrestamo, Date fechaDevolucion) {
-        prestamoDao.realizarPrestamo( fechaPrestamo, fechaDevolucion,usuarioCedula, libroID);
+    StoredProcedureQuery query = entityManager.createStoredProcedureQuery("Prestamos.CrearPrestamo");
+    query.registerStoredProcedureParameter("p_fecha_prestamo", Date.class, ParameterMode.IN);
+    query.registerStoredProcedureParameter("p_fecha_devolucion", Date.class, ParameterMode.IN);
+    query.registerStoredProcedureParameter("p_usuario_cedula", Long.class, ParameterMode.IN);
+    query.registerStoredProcedureParameter("p_libro_id", Long.class, ParameterMode.IN);
+    query.registerStoredProcedureParameter("p_resultado", Integer.class, ParameterMode.OUT);
+
+    query.setParameter("p_fecha_prestamo", fechaPrestamo);
+    query.setParameter("p_fecha_devolucion", fechaDevolucion);
+    query.setParameter("p_usuario_cedula", usuarioCedula);
+    query.setParameter("p_libro_id", libroID);
+
+    query.execute();
+
+    resultado = (Integer) query.getOutputParameterValue("p_resultado");
+
+    if (resultado == 1) {
+        System.out.println("Préstamo creado exitosamente.");
+    } else {
+        System.out.println("No se pudo crear el préstamo debido a multas pendientes.");
     }
+}
+
 
     @Override
     public List<Prestamo> obtenerPrestamos() {

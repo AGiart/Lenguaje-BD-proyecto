@@ -39,7 +39,7 @@ public class LoginController {
         session.invalidate();
 
         // Redirige a la página de inicio de sesión o a la página principal
-        return "redirect:/login";
+        return "redirect:/login/login";
     }
     
 

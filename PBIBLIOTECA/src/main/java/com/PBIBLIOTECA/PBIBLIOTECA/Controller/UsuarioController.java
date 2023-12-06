@@ -75,7 +75,7 @@ public class UsuarioController {
         usuarioServiceImpl.eliminarUsuarioPorId(idUsuario);
 
         // Luego, agrega el modelo y realiza las operaciones necesarias
-        return "redirect:/";
+        return "redirect:/usuario/listado";
     }
     
     

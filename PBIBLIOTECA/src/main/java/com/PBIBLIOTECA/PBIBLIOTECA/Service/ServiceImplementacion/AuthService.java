@@ -25,7 +25,7 @@ public class AuthService {
     private HttpSession httpSession;
 
     public String login(int cedula, String contrasena) {
-        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("Usuario.IniciarSesionYObtenerUsuario");
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("Login.IniciarSesionYObtenerUsuario");
         query.registerStoredProcedureParameter("p_cedula", Integer.class, ParameterMode.IN);
         query.registerStoredProcedureParameter("p_contrasena", String.class, ParameterMode.IN);
         query.registerStoredProcedureParameter("p_result", Integer.class, ParameterMode.OUT);
@@ -38,7 +38,7 @@ public class AuthService {
         Integer loginSuccessful = (Integer) query.getOutputParameterValue("p_result");
 
         if (loginSuccessful != null && loginSuccessful == 1) {
-            StoredProcedureQuery userDataQuery = entityManager.createStoredProcedureQuery("Usuario.ObtenerDatosUsuario");
+            StoredProcedureQuery userDataQuery = entityManager.createStoredProcedureQuery("Login.ObtenerDatosUsuario");
             userDataQuery.registerStoredProcedureParameter("p_cedula", Integer.class, ParameterMode.IN);
             userDataQuery.registerStoredProcedureParameter("p_roles", ResultSet.class, ParameterMode.REF_CURSOR);
 
@@ -77,7 +77,7 @@ public class AuthService {
                 );
 
                 httpSession.setAttribute("usuario", usuario);
-                 httpSession.setMaxInactiveInterval(1800);
+                httpSession.setMaxInactiveInterval(1800);
                  
 
                 return "Inicio de sesión exitoso";

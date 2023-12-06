@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Administrar Libros</title>
+        <!-- Enlace a Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/webjars/bootstrap/4.5.2/css/bootstrap.min.css">
+
+        <!-- Enlace a Font Awesome CSS -->
+        <link rel="stylesheet" href="/webjars/font-awesome/5.15.1/css/all.css">
+        <!-- En el head de tu HTML -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-ZzK1pPYYlXTlSqPEx1nLoFqXjd8z2I+T4AnuDU7P9Qa1C4aCm3Bq7D8R2O3g8i6T" crossorigin="anonymous">
+
+    </head>
+    <body>
+        <section th:fragment="multas">
+
+
+            <section class="intro">
+                <div class="bg-image h-100" >
+                    <div class="mask d-flex align-items-center h-100" style="background-color: rgba(0,0,0,.0);">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-12">
+                                    <div class="card bg-light  shadow-2-strong mt-5">
+                                        <div class="card-body">
+                                            <div class="table-responsive ">
+                                                <table class="table table-light table-borderless mb-0">
+                                                    
+                                                    
+                                                    <thead>
+                                                    <p>Multas</p>
+                                                        <tr>
+                                                            <th scope="col">#</th>
+                                                            <th scope="col">Cliente</th>
+                                                            <th scope="col">Precio</th>
+                                                            <th scope="col">Fecha de creacion</th>
+                                                            <th scope="col">Estado</th>
+                                                           
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <!-- Itera sobre la lista de libros -->
+                                                        <tr th:each="libro : ${multas}">
+                                                            <td th:text="${libro[1]}"></td>
+                                                            <td th:text="${libro[2]}"></td>
+                                                            <td th:text="${libro[3]}"></td>
+                                                            <td th:text="${libro[4]}"></td>
+                                                            <td th:text="${libro[5]}"></td>
+                                                          
+
+                                                            <td>
+
+
+
+                                                                <form th:action="@{/libros/eliminarLibro}" method="POST" class="form-inline">
+                                                                    <input type="hidden" th:name="idLibro" th:value="${libro[0]}" />
+                                                                    <div class="btn-group mr-2" role="group" aria-label="Acciones">
+                                                                        <button type="submit" class="btn bg-Dark border-light">Eliminar</button>
+                                                                    </div>
+
+
+
+
+                                                                </form>
+                                                            </td>
+
+                                                            <td>
+                                                                <div class="btn-group mr-2" role="group" aria-label="Acciones">
+                                                                    <a class="btn btn-custom" th:href="@{/libros/editar/}+${libro[1]}">Editar</a>
+
+                                                                </div>
+
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+    </body>
+</html>
