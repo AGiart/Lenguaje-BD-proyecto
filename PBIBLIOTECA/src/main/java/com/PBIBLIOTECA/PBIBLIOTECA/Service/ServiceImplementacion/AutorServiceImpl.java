@@ -37,7 +37,7 @@ public class AutorServiceImpl implements AutorService {
 
     @Override
     public void savelibros(Autor autor) {
-        autorDao.insertarAutor(autor.getNombre(), autor.getNombre(), autor.getNacionalidadID());
+        autorDao.insertarAutor(autor.getNombre(), autor.getApellido(), autor.getNacionalidadID());
        
     }
 

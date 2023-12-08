@@ -5,6 +5,8 @@
 package com.PBIBLIOTECA.PBIBLIOTECA.Service.ServiceImplementacion;
 
 import com.PBIBLIOTECA.PBIBLIOTECA.Domain.Multa;
+
+import com.PBIBLIOTECA.PBIBLIOTECA.Dao.MultaDao;
 import com.PBIBLIOTECA.PBIBLIOTECA.Service.MultaService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.ParameterMode;
@@ -19,6 +21,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class MultaServiceImpl implements MultaService {
+
+    @Autowired
+    MultaDao multaDao;
+
     @Autowired
     EntityManager entityManager;
 
@@ -30,5 +36,18 @@ public class MultaServiceImpl implements MultaService {
 
         return query.getResultList();
     }
-    
+
+    @Override
+    public void crearMulta(Multa multa) {
+
+        multaDao.crearMulta(multa.getPrestamoId(),multa.getUsuarioCedula(),multa.getMonto());
+
+    }
+
+    @Override
+    public void actualizarMulta(Multa multa) {
+        multaDao.actualizarMulta(multa.getMultaID());
+    }
+
+
 }

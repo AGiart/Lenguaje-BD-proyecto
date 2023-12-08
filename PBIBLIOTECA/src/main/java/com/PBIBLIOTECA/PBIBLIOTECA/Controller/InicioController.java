@@ -243,7 +243,7 @@ public class InicioController {
 
 
 
-        return "redirect:/libros";
+        return "redirect:/libros/inicio";
     }
     
     
@@ -295,6 +295,7 @@ public class InicioController {
         autorServiceImpl.savelibros(autor);
 
         model.addAttribute("mensaje", "Autor insertado correctamente");
+
         return "redirect:/libros/inicio";
     }
 
@@ -345,9 +346,11 @@ public class InicioController {
 
     @GetMapping("/mostrarAutores")
     public String mostrarAutores(Model model) {
-
+        var nacionalidades = nacionalidadServiceImpl.obtenerNacionalides();
         var Autores = autorServiceImpl.obtenerAutores();
+
         model.addAttribute("Autores", Autores);
+        model.addAttribute("nacionalidades", nacionalidades);
         
          if (!authService.isUserRolePresent()) {
             return "redirect:/"; // o redirige a otra página de error

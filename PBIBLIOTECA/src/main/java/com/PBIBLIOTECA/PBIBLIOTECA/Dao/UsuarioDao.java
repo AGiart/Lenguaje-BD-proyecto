@@ -30,4 +30,15 @@ public interface UsuarioDao extends JpaRepository<Usuario, Long> {
             @Param("p_CEDULA") Long cedula
     );
 
+    @Procedure(procedureName = "USUARIO.actualizarUsuario")
+    String actualizarUsuario(
+            @Param("p_NOMBRE") Long cedula,
+            @Param("p_APELLIDO") String nombre,
+            @Param("p_APELLIDO") String apellido,
+            @Param("p_EMAIL") String email,
+            @Param("p_NOMBRE") Long rolId,
+            @Param("p_CEDULA") String estado
+    );
+
+
 }

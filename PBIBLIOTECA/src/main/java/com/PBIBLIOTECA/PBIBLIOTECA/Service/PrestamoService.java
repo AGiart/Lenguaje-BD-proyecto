@@ -16,8 +16,10 @@ import java.util.Date;
 public interface PrestamoService {
     
     
-     public void realizarPrestamo(Long usuarioCedula, Long libroID, Date fechaPrestamo, Date fechaDevolucion);
+     public void realizarPrestamo(Long usuarioCedula, Long libroID, Date fechaDevolucion);
     
     
-    public List<Prestamo> obtenerPrestamos( );
+    public List<Prestamo> obtenerPrestamos();
+    public List<Prestamo> obtenerPrestamosDevueltos();
+
 }

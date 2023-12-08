@@ -14,9 +14,13 @@ import java.util.List;
 public interface UsuarioService {
     
     public List<Usuario>obtenerInfoUsuarios();
+
+    public List<Usuario>ObtenerDatosUsuarioPorCedula(Long cedula);
     
     
     public String guardarUsuario(String nombre, String apellido, String email, String contrasena, Long rolId, Long cedula);
+
+    public void actualizar(String nombre, String apellido, String email, Long rolId, Long cedula,String estado);
     
     
      public void eliminarUsuarioPorId(Long id);

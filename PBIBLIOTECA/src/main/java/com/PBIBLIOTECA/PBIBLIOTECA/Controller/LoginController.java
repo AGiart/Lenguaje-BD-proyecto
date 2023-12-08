@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 /**
  *
  * @author jason
@@ -25,6 +26,8 @@ public class LoginController {
     
     @Autowired
     private AuthService authService;
+
+    private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(8);
 
     @GetMapping("/login")
     public String showLoginForm() {
@@ -45,7 +48,13 @@ public class LoginController {
 
     @PostMapping("/login")
     public String processLogin(@RequestParam("cedula") int cedula, @RequestParam("contrasena") String contrasena, Model model) {
+
+
         String result = authService.login(cedula, contrasena);
+
+
+
+
 
         if ("Inicio de sesión exitoso".equals(result)) {
             return "redirect:/libros/inicio"; // Redirige a la página principal después del inicio de sesión exitoso

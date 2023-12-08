@@ -19,7 +19,6 @@ public interface PrestamoDao  extends JpaRepository<Prestamo, Long>{
     
     @Procedure(procedureName = "Prestamos.CrearPrestamo")
     void realizarPrestamo(
-            @Param("p_fecha_prestamo") Date fechaPrestamo,
             @Param("p_fecha_devolucion") Date fechaDevolucion,
             @Param("p_usuario_cedula") Long usuarioCedula,
             @Param("p_libro_id") Long libroID

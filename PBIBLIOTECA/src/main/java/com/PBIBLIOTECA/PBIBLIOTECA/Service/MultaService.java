@@ -15,4 +15,8 @@ import java.util.List;
 public interface MultaService {
     
      public List<Multa> obtenerMultas( );
+
+     public void crearMulta(Multa multa);
+
+     public void actualizarMulta(Multa multa);
 }

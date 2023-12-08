@@ -29,17 +29,15 @@ public class PrestamoServiceImpl implements PrestamoService {
     PrestamoDao prestamoDao;
     
      @Override
-     public void realizarPrestamo(Long usuarioCedula, Long libroID, Date fechaPrestamo, Date fechaDevolucion) {
+     public void realizarPrestamo(Long usuarioCedula, Long libroID,  Date fechaDevolucion) {
     Integer resultado = 0;
 
     StoredProcedureQuery query = entityManager.createStoredProcedureQuery("Prestamos.CrearPrestamo");
-    query.registerStoredProcedureParameter("p_fecha_prestamo", Date.class, ParameterMode.IN);
     query.registerStoredProcedureParameter("p_fecha_devolucion", Date.class, ParameterMode.IN);
     query.registerStoredProcedureParameter("p_usuario_cedula", Long.class, ParameterMode.IN);
     query.registerStoredProcedureParameter("p_libro_id", Long.class, ParameterMode.IN);
     query.registerStoredProcedureParameter("p_resultado", Integer.class, ParameterMode.OUT);
 
-    query.setParameter("p_fecha_prestamo", fechaPrestamo);
     query.setParameter("p_fecha_devolucion", fechaDevolucion);
     query.setParameter("p_usuario_cedula", usuarioCedula);
     query.setParameter("p_libro_id", libroID);
@@ -59,6 +57,15 @@ public class PrestamoServiceImpl implements PrestamoService {
     @Override
     public List<Prestamo> obtenerPrestamos() {
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("PRESTAMOS.ObtenerPrestamos");
+        query.registerStoredProcedureParameter("p_Prestamos", void.class, ParameterMode.REF_CURSOR);
+        query.execute();
+
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Prestamo> obtenerPrestamosDevueltos() {
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("PRESTAMOS.ObtenerPrestamosDevoluciones");
         query.registerStoredProcedureParameter("p_Prestamos", void.class, ParameterMode.REF_CURSOR);
         query.execute();
 
